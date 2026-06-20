@@ -1815,6 +1815,946 @@ body.modal-open{overflow:hidden}
   }
 }
 
+
+/* ─── EVOLUCIONES CLÍNICAS PROFESIONALES ───────── */
+#view-evoluciones .evolutions-page{width:100%;min-width:0}
+#view-evoluciones .evolutions-page-header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+#view-evoluciones .evolutions-heading{min-width:0}
+#view-evoluciones .evolutions-heading h2{color:var(--text);font-size:26px;font-weight:800;line-height:1.15;letter-spacing:-.5px}
+#view-evoluciones .evolutions-heading p{margin-top:5px;color:var(--muted);font-size:14px}
+#view-evoluciones .evolution-create-btn{min-height:46px;padding:0 18px;border-radius:11px;font-weight:700;gap:8px;box-shadow:0 6px 16px rgba(27,95,204,.22)}
+#view-evoluciones .evolution-create-btn svg{width:18px;height:18px;flex:0 0 auto}
+#view-evoluciones .evolution-create-btn:active{transform:translateY(1px)}
+#view-evoluciones .evolution-create-btn:focus-visible{outline:3px solid rgba(27,95,204,.24);outline-offset:2px}
+
+#view-evoluciones .evolution-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:24px}
+#view-evoluciones .evolution-metric-card{display:flex;align-items:center;gap:13px;min-width:0;padding:16px;border:1px solid var(--border);border-radius:15px;background:var(--surface);box-shadow:var(--shadow-sm)}
+#view-evoluciones .evolution-metric-icon{width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;border-radius:12px;background:var(--blue-50);color:var(--blue)}
+#view-evoluciones .evolution-metric-icon svg{width:22px;height:22px}
+#view-evoluciones .evolution-metric-card.metric-patients .evolution-metric-icon{background:var(--green-50);color:var(--green)}
+#view-evoluciones .evolution-metric-card.metric-month .evolution-metric-icon{background:var(--purple-50);color:var(--purple)}
+#view-evoluciones .evolution-metric-copy{min-width:0}
+#view-evoluciones .evolution-metric-card strong{display:block;color:var(--text);font-size:23px;line-height:1;font-weight:800}
+#view-evoluciones .evolution-metric-card .evolution-metric-label{display:block;margin-top:5px;color:var(--text-2);font-size:13px;font-weight:700;line-height:1.25}
+#view-evoluciones .evolution-metric-card small{display:block;margin-top:2px;color:var(--muted);font-size:11px;line-height:1.25}
+
+#view-evoluciones .evolution-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
+#view-evoluciones .evolution-section-head h3{color:var(--text);font-size:17px;font-weight:800;letter-spacing:-.2px}
+#view-evoluciones .evolution-section-head p{margin-top:3px;color:var(--muted);font-size:12px}
+
+#view-evoluciones .evolution-list,
+.profile-shell .evolution-list{display:grid;gap:13px;min-width:0}
+#view-evoluciones .evolution-card,
+.profile-shell .evolution-card{position:relative;min-width:0;overflow:hidden;padding:18px 18px 17px 21px;border:1px solid var(--border);border-radius:17px;background:var(--surface);box-shadow:0 7px 22px rgba(31,65,112,.07)}
+#view-evoluciones .evolution-card-accent,
+.profile-shell .evolution-card-accent{position:absolute;inset:0 auto 0 0;width:4px;background:var(--blue)}
+#view-evoluciones .evolution-card.accent-1 .evolution-card-accent,
+.profile-shell .evolution-card.accent-1 .evolution-card-accent{background:var(--green)}
+#view-evoluciones .evolution-card.accent-2 .evolution-card-accent,
+.profile-shell .evolution-card.accent-2 .evolution-card-accent{background:var(--amber)}
+#view-evoluciones .evolution-card.accent-3 .evolution-card-accent,
+.profile-shell .evolution-card.accent-3 .evolution-card-accent{background:var(--purple)}
+#view-evoluciones .evolution-card-header,
+.profile-shell .evolution-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0}
+#view-evoluciones .evolution-patient,
+.profile-shell .evolution-patient{display:flex;align-items:center;gap:11px;min-width:0;flex:1}
+#view-evoluciones .evolution-avatar,
+.profile-shell .evolution-avatar{width:44px;height:44px;display:grid;place-items:center;flex:0 0 auto;border-radius:50%;background:var(--blue);color:#fff;font-size:14px;font-weight:800;box-shadow:0 5px 12px rgba(27,95,204,.18)}
+#view-evoluciones .evolution-card.accent-1 .evolution-avatar,
+.profile-shell .evolution-card.accent-1 .evolution-avatar{background:var(--green);box-shadow:0 5px 12px rgba(10,102,80,.18)}
+#view-evoluciones .evolution-card.accent-2 .evolution-avatar,
+.profile-shell .evolution-card.accent-2 .evolution-avatar{background:var(--amber);box-shadow:0 5px 12px rgba(201,124,16,.18)}
+#view-evoluciones .evolution-card.accent-3 .evolution-avatar,
+.profile-shell .evolution-card.accent-3 .evolution-avatar{background:var(--purple);box-shadow:0 5px 12px rgba(91,33,182,.18)}
+#view-evoluciones .evolution-patient-text,
+.profile-shell .evolution-patient-text{min-width:0}
+#view-evoluciones .evolution-patient-text strong,
+.profile-shell .evolution-patient-text strong{display:-webkit-box;color:var(--text);font-size:18px;font-weight:800;line-height:1.25;overflow-wrap:anywhere;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#view-evoluciones .evolution-patient-text span,
+.profile-shell .evolution-patient-text span{display:block;margin-top:2px;color:var(--muted);font-size:11px;font-weight:600}
+#view-evoluciones .evolution-date-chip,
+.profile-shell .evolution-date-chip{min-height:34px;display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;padding:0 10px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);color:var(--text-2);font-size:12px;font-weight:700;white-space:nowrap}
+#view-evoluciones .evolution-date-chip svg,
+.profile-shell .evolution-date-chip svg{width:16px;height:16px;color:var(--blue)}
+#view-evoluciones .evolution-context-date,
+.profile-shell .evolution-context-date{display:flex;align-items:center;gap:9px;min-width:0;color:var(--text)}
+#view-evoluciones .evolution-context-date svg,
+.profile-shell .evolution-context-date svg{width:19px;height:19px;color:var(--blue);flex:0 0 auto}
+#view-evoluciones .evolution-context-date strong,
+.profile-shell .evolution-context-date strong{font-size:16px;font-weight:800;line-height:1.25}
+
+#view-evoluciones .evolution-observation,
+.profile-shell .evolution-observation{margin-top:14px;color:var(--text-2);font-size:14px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+#view-evoluciones .evolution-plan,
+.profile-shell .evolution-plan{display:grid;gap:3px;margin-top:12px;padding:11px 12px;border:1px solid var(--blue-100);border-radius:11px;background:var(--blue-50)}
+#view-evoluciones .evolution-plan small,
+.profile-shell .evolution-plan small{color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.55px;text-transform:uppercase}
+#view-evoluciones .evolution-plan span,
+.profile-shell .evolution-plan span{color:var(--text-2);font-size:13px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere}
+#view-evoluciones .evolution-eva-row,
+.profile-shell .evolution-eva-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+#view-evoluciones .evolution-eva,
+.profile-shell .evolution-eva{min-height:31px;display:inline-flex;align-items:center;padding:0 11px;border:1px solid transparent;border-radius:999px;font-size:12px;font-weight:700;line-height:1.2}
+#view-evoluciones .evolution-eva-activity,
+.profile-shell .evolution-eva-activity{color:var(--blue);background:var(--blue-50);border-color:var(--blue-100)}
+#view-evoluciones .evolution-eva-rest,
+.profile-shell .evolution-eva-rest{color:var(--purple);background:var(--purple-50);border-color:#d8ccfa}
+
+#view-evoluciones .evolution-actions,
+.profile-shell .evolution-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:15px;padding-top:14px;border-top:1px solid var(--border)}
+#view-evoluciones .evolution-action-btn,
+.profile-shell .evolution-action-btn{width:100%;min-width:0;min-height:44px;border-radius:10px;font-size:13px;font-weight:700;gap:8px}
+#view-evoluciones .evolution-action-btn svg,
+.profile-shell .evolution-action-btn svg{width:17px;height:17px;flex:0 0 auto}
+#view-evoluciones .evolution-edit-btn,
+.profile-shell .evolution-edit-btn{color:#fff;background:var(--blue);border-color:var(--blue);box-shadow:0 5px 13px rgba(27,95,204,.2)}
+#view-evoluciones .evolution-edit-btn:hover,
+.profile-shell .evolution-edit-btn:hover{color:#fff;background:var(--blue-mid);border-color:var(--blue-mid)}
+#view-evoluciones .evolution-delete-btn,
+.profile-shell .evolution-delete-btn{color:var(--red);background:var(--red-50);border-color:var(--red-100)}
+#view-evoluciones .evolution-delete-btn:hover,
+.profile-shell .evolution-delete-btn:hover{color:#8f2424;background:#f9d8d8;border-color:var(--red)}
+#view-evoluciones .evolution-action-btn:active,
+.profile-shell .evolution-action-btn:active{transform:translateY(1px)}
+#view-evoluciones .evolution-action-btn:focus-visible,
+.profile-shell .evolution-action-btn:focus-visible{outline:3px solid rgba(27,95,204,.24);outline-offset:2px}
+
+#view-evoluciones .evolution-empty,
+.profile-shell .evolution-empty{display:grid;justify-items:center;gap:6px;padding:34px 22px}
+#view-evoluciones .evolution-empty-icon,
+.profile-shell .evolution-empty-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--blue-50);color:var(--blue)}
+#view-evoluciones .evolution-empty-icon svg,
+.profile-shell .evolution-empty-icon svg{width:24px;height:24px}
+#view-evoluciones .evolution-empty strong,
+.profile-shell .evolution-empty strong{color:var(--text);font-size:15px}
+#view-evoluciones .evolution-empty p,
+.profile-shell .evolution-empty p{color:var(--muted);font-size:12px;text-align:center}
+
+.profile-shell .evolution-list.is-patient-context{gap:10px}
+.profile-shell .evolution-list.is-patient-context .evolution-card{padding:15px 15px 14px 18px;border-radius:14px;box-shadow:var(--shadow-sm)}
+.profile-shell .evolution-list.is-patient-context .evolution-observation{margin-top:11px}
+.profile-shell .evolution-list.is-patient-context .evolution-actions{margin-top:12px;padding-top:12px}
+
+@media(max-width:780px){
+  #view-evoluciones .evolutions-page-header{display:grid;grid-template-columns:1fr;gap:13px;margin-bottom:16px}
+  #view-evoluciones .evolution-create-btn{width:100%;min-height:48px}
+  #view-evoluciones .evolution-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:20px}
+  #view-evoluciones .evolution-metric-card{padding:13px}
+  #view-evoluciones .evolution-metric-card:last-child{grid-column:1/-1}
+  #view-evoluciones .evolution-section-head{margin-bottom:10px}
+  #view-evoluciones .evolution-list{gap:11px}
+  #view-evoluciones .evolution-card{padding:16px 14px 14px 18px;border-radius:16px}
+  #view-evoluciones .evolution-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:430px){
+  #view-evoluciones .evolutions-heading h2{font-size:23px}
+  #view-evoluciones .evolution-metrics{grid-template-columns:1fr 1fr}
+  #view-evoluciones .evolution-metric-card{align-items:flex-start;gap:9px;min-height:92px}
+  #view-evoluciones .evolution-metric-card:last-child{min-height:76px}
+  #view-evoluciones .evolution-metric-icon{width:38px;height:38px;border-radius:10px}
+  #view-evoluciones .evolution-metric-icon svg{width:19px;height:19px}
+  #view-evoluciones .evolution-metric-card strong{font-size:21px}
+  #view-evoluciones .evolution-metric-card .evolution-metric-label{font-size:11.5px}
+  #view-evoluciones .evolution-card-header{align-items:flex-start}
+  #view-evoluciones .evolution-avatar{width:40px;height:40px}
+  #view-evoluciones .evolution-patient-text strong{font-size:17px}
+  #view-evoluciones .evolution-date-chip{min-height:32px;padding-inline:8px;font-size:11px;gap:5px}
+  #view-evoluciones .evolution-observation{font-size:13.5px}
+  #view-evoluciones .evolution-actions{grid-template-columns:1fr 1fr;gap:8px}
+  #view-evoluciones .evolution-action-btn{padding-inline:9px}
+}
+@media(max-width:350px){
+  #view-evoluciones .evolution-card-header{display:grid;grid-template-columns:1fr}
+  #view-evoluciones .evolution-date-chip{justify-self:start}
+  #view-evoluciones .evolution-actions{grid-template-columns:1fr}
+}
+
+
+
+/* ─── PAGOS Y PROMOCIONES PROFESIONAL ───────────── */
+#view-pagos .payments-dashboard{
+  width:100%;
+  min-width:0;
+}
+#view-pagos .payments-page-header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:20px;
+}
+#view-pagos .payments-heading{min-width:0}
+#view-pagos .payments-heading h2{
+  color:var(--text);
+  font-size:24px;
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:-.45px;
+}
+#view-pagos .payments-heading p{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13.5px;
+  line-height:1.45;
+}
+#view-pagos .payments-main-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:9px;
+  flex:0 0 auto;
+}
+#view-pagos .payments-main-actions .btn{
+  min-height:44px;
+  padding:0 16px;
+  border-radius:11px;
+  gap:8px;
+  font-size:13px;
+  font-weight:750;
+}
+#view-pagos .payments-new-pack-btn{
+  color:var(--blue);
+  background:var(--surface);
+  border-color:var(--blue-100);
+}
+#view-pagos .payments-new-pack-btn:hover{
+  color:var(--blue);
+  background:var(--blue-50);
+  border-color:var(--blue);
+}
+#view-pagos .payments-new-payment-btn{
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue),var(--blue-mid));
+  border-color:var(--blue);
+  box-shadow:0 6px 16px rgba(27,95,204,.23);
+}
+#view-pagos .payments-new-payment-btn:hover{
+  color:#fff;
+  background:linear-gradient(135deg,#174fae,var(--blue));
+  border-color:#174fae;
+  box-shadow:0 8px 20px rgba(27,95,204,.28);
+}
+#view-pagos .payments-main-actions svg,
+#view-pagos .combo-card-actions svg,
+#view-pagos .payment-movement-actions svg,
+#view-pagos .promo-action-btn svg,
+#view-pagos .finance-chevron svg,
+#view-pagos .payments-filter-details summary svg,
+#view-pagos .payment-metric-icon svg,
+#view-pagos .combo-meta-chip svg,
+#view-pagos .combo-schedule-note svg{
+  width:18px;
+  height:18px;
+  flex:0 0 auto;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#view-pagos .assigned-packs-section,
+#view-pagos .payment-movements-section{
+  margin-top:0;
+  margin-bottom:22px;
+}
+#view-pagos .finance-section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+#view-pagos .finance-section-head h3{
+  color:var(--text);
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.3px;
+}
+#view-pagos .finance-section-head p{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.4;
+}
+#view-pagos .combo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+#view-pagos .finance-pack-card{
+  position:relative;
+  min-width:0;
+  padding:17px;
+  border:1px solid #d8e2ef;
+  border-radius:18px;
+  background:var(--surface);
+  box-shadow:0 8px 24px rgba(31,65,112,.075);
+}
+#view-pagos .finance-pack-card:hover{
+  border-color:#c8d7eb;
+  box-shadow:0 11px 28px rgba(31,65,112,.1);
+}
+#view-pagos .combo-card-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+#view-pagos .combo-card-identity{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:0;
+}
+#view-pagos .combo-avatar{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(145deg,var(--blue),var(--blue-mid));
+  box-shadow:0 5px 13px rgba(27,95,204,.18);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.2px;
+}
+#view-pagos .combo-card-title{
+  color:var(--text);
+  font-size:15.5px;
+  font-weight:800;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+}
+#view-pagos .combo-card-patient{
+  margin-top:2px;
+  color:var(--muted);
+  font-size:12.5px;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+#view-pagos .combo-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:12px;
+}
+#view-pagos .combo-meta-chip{
+  min-height:29px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  max-width:100%;
+  padding:0 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  color:var(--text-2);
+  background:var(--surface-2);
+  font-size:11.5px;
+  font-weight:650;
+  line-height:1.2;
+}
+#view-pagos .combo-meta-chip.is-service{
+  color:var(--blue);
+  background:var(--blue-50);
+  border-color:var(--blue-100);
+}
+#view-pagos .combo-meta-chip.is-paid{
+  color:var(--green);
+  background:var(--green-50);
+  border-color:var(--green-100);
+}
+#view-pagos .combo-meta-chip.is-unpaid{
+  color:var(--amber);
+  background:var(--amber-50);
+  border-color:var(--amber-100);
+}
+#view-pagos .combo-usage-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:14px;
+  color:var(--text-2);
+  font-size:12px;
+}
+#view-pagos .combo-usage-head strong{color:var(--text);font-size:12.5px}
+#view-pagos .combo-progress{
+  height:7px;
+  margin-top:8px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e6ebf2;
+}
+#view-pagos .combo-progress>span{
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--blue),var(--blue-mid));
+}
+#view-pagos .combo-counts{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:7px;
+  margin-top:11px;
+}
+#view-pagos .combo-count{
+  min-width:0;
+  padding:9px 6px;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--surface-2);
+}
+#view-pagos .combo-count strong{
+  display:block;
+  color:var(--text);
+  font-size:17px;
+  line-height:1;
+}
+#view-pagos .combo-count small{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:750;
+  line-height:1.2;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+}
+#view-pagos .combo-schedule-note{
+  min-height:39px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:11px;
+  padding:9px 11px;
+  border:1px solid #dce8fa;
+  border-radius:10px;
+  color:var(--text-2);
+  background:var(--blue-50);
+  font-size:11.5px;
+  line-height:1.4;
+}
+#view-pagos .combo-schedule-note svg{color:var(--blue)}
+#view-pagos .combo-card-note{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:11.5px;
+  line-height:1.45;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+#view-pagos .combo-card-actions{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:7px;
+  margin-top:13px;
+  padding-top:13px;
+  border-top:1px solid var(--border);
+}
+#view-pagos .combo-card-actions .btn{
+  width:100%;
+  min-width:0;
+  min-height:40px;
+  padding:0 8px;
+  border-radius:9px;
+  gap:6px;
+  font-size:11.5px;
+  font-weight:750;
+}
+#view-pagos .combo-profile-btn{
+  color:var(--blue);
+  background:var(--surface);
+  border-color:var(--blue-100);
+}
+#view-pagos .combo-profile-btn:hover{background:var(--blue-50);border-color:var(--blue)}
+#view-pagos .combo-pay-btn{
+  color:#fff;
+  background:var(--green);
+  border-color:var(--green);
+}
+#view-pagos .combo-pay-btn:hover{color:#fff;background:#075542;border-color:#075542}
+#view-pagos .combo-edit-btn{
+  color:var(--blue);
+  background:var(--blue-50);
+  border-color:var(--blue-100);
+}
+#view-pagos .combo-edit-btn:hover{background:#dce9ff;border-color:var(--blue)}
+#view-pagos .combo-delete-btn{
+  color:var(--red);
+  background:var(--red-50);
+  border-color:var(--red-100);
+}
+#view-pagos .combo-delete-btn:hover{background:#f9d8d8;border-color:var(--red)}
+#view-pagos .payment-movements-list{
+  display:grid;
+  gap:10px;
+}
+#view-pagos .payment-movement-card{
+  min-width:0;
+  padding:15px 16px;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:var(--surface);
+  box-shadow:var(--shadow-sm);
+}
+#view-pagos .payment-movement-card:hover{
+  border-color:#cad8e9;
+  box-shadow:0 8px 20px rgba(31,65,112,.08);
+}
+#view-pagos .payment-movement-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+#view-pagos .payment-movement-identity{min-width:0}
+#view-pagos .payment-concept{
+  display:block;
+  color:var(--blue);
+  font-size:10.5px;
+  font-weight:800;
+  line-height:1.2;
+  letter-spacing:.55px;
+  text-transform:uppercase;
+}
+#view-pagos .payment-patient-name{
+  display:block;
+  margin-top:4px;
+  color:var(--text);
+  font-size:16px;
+  font-weight:800;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+}
+#view-pagos .payment-movement-meta{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:11.5px;
+  line-height:1.45;
+  overflow-wrap:anywhere;
+}
+#view-pagos .payment-movement-bottom{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin-top:12px;
+}
+#view-pagos .payment-amount{
+  color:var(--text);
+  font-size:23px;
+  font-weight:850;
+  line-height:1;
+  letter-spacing:-.5px;
+  white-space:nowrap;
+}
+#view-pagos .payment-movement-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:7px;
+  flex-wrap:wrap;
+}
+#view-pagos .payment-movement-actions .btn{
+  min-height:40px;
+  padding:0 12px;
+  border-radius:9px;
+  gap:7px;
+  font-size:12px;
+  font-weight:750;
+}
+#view-pagos .payment-profile-btn{
+  color:var(--blue);
+  background:var(--surface);
+  border-color:var(--blue-100);
+}
+#view-pagos .payment-profile-btn:hover{background:var(--blue-50);border-color:var(--blue)}
+#view-pagos .payment-edit-btn{
+  color:#fff;
+  background:var(--blue);
+  border-color:var(--blue);
+}
+#view-pagos .payment-edit-btn:hover{color:#fff;background:var(--blue-mid);border-color:var(--blue-mid)}
+#view-pagos .payment-delete-btn{
+  color:var(--red);
+  background:var(--red-50);
+  border-color:var(--red-100);
+}
+#view-pagos .payment-delete-btn:hover{background:#f9d8d8;border-color:var(--red)}
+#view-pagos .finance-collapsible,
+#view-pagos .payments-summary-card{
+  margin-bottom:22px;
+  overflow:visible;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:var(--surface);
+  box-shadow:0 7px 20px rgba(31,65,112,.065);
+}
+#view-pagos .finance-collapsible-summary,
+#view-pagos .payments-filter-details>summary{
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+}
+#view-pagos .finance-collapsible-summary::-webkit-details-marker,
+#view-pagos .payments-filter-details>summary::-webkit-details-marker{display:none}
+#view-pagos .finance-collapsible-summary{
+  min-height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:16px 18px;
+  border-radius:17px;
+}
+#view-pagos .finance-collapsible-summary:hover{background:var(--surface-2)}
+#view-pagos .finance-collapsible-summary h3{
+  color:var(--text);
+  font-size:17px;
+  font-weight:800;
+}
+#view-pagos .finance-collapsible-summary p{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+}
+#view-pagos .finance-summary-meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:var(--muted);
+  font-size:11.5px;
+  font-weight:650;
+  white-space:nowrap;
+}
+#view-pagos .finance-chevron{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--border);
+  border-radius:9px;
+  color:var(--text-2);
+  background:var(--surface);
+  transition:transform .2s ease;
+}
+#view-pagos .finance-collapsible[open] .finance-chevron{transform:rotate(180deg)}
+#view-pagos .finance-collapsible-content{
+  padding:0 18px 18px;
+  border-top:1px solid var(--border);
+}
+#view-pagos .promo-catalog{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  padding-top:15px;
+}
+#view-pagos .compact-promo-card{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:linear-gradient(145deg,#fff,#f8faff);
+  box-shadow:none;
+}
+#view-pagos .promo-card-main{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  min-width:0;
+}
+#view-pagos .promo-card-copy{min-width:0}
+#view-pagos .promo-service{
+  color:var(--blue);
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+#view-pagos .promo-name{
+  display:block;
+  margin-top:3px;
+  color:var(--text);
+  font-size:14px;
+  font-weight:800;
+  line-height:1.3;
+  overflow-wrap:anywhere;
+}
+#view-pagos .promo-detail{
+  display:block;
+  min-height:0;
+  margin-top:5px;
+  color:var(--text-2);
+  font-size:11px;
+  line-height:1.4;
+}
+#view-pagos .promo-price{
+  flex:0 0 auto;
+  color:var(--text);
+  font-size:18px;
+  font-weight:850;
+  line-height:1.1;
+  letter-spacing:-.4px;
+  white-space:nowrap;
+}
+#view-pagos .promo-card-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:9px;
+  padding-top:10px;
+  border-top:1px solid var(--border);
+}
+#view-pagos .promo-validity{
+  margin:0;
+  color:var(--muted);
+  font-size:10.5px;
+  line-height:1.35;
+}
+#view-pagos .promo-action-btn{
+  min-height:36px;
+  padding:0 10px;
+  border-radius:8px;
+  gap:6px;
+  font-size:11px;
+  font-weight:750;
+}
+#view-pagos .payments-summary-card{
+  padding:17px;
+}
+#view-pagos .payments-summary-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:13px;
+}
+#view-pagos .payments-summary-head h3{
+  color:var(--text);
+  font-size:17px;
+  font-weight:800;
+}
+#view-pagos .payments-summary-head p{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:11.5px;
+  line-height:1.4;
+}
+#view-pagos .payments-compact-metrics{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
+}
+#view-pagos .payment-compact-metric{
+  min-width:0;
+  min-height:105px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:6px;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface-2);
+}
+#view-pagos .payment-compact-metric.is-primary{
+  grid-column:span 2;
+  background:linear-gradient(145deg,var(--blue-50),#f8fbff);
+  border-color:var(--blue-100);
+}
+#view-pagos .payment-metric-icon{
+  width:31px;
+  height:31px;
+  display:grid;
+  place-items:center;
+  border-radius:9px;
+  color:var(--blue);
+  background:#fff;
+  border:1px solid rgba(27,95,204,.14);
+}
+#view-pagos .payment-compact-metric.is-success .payment-metric-icon{color:var(--green);background:var(--green-50);border-color:var(--green-100)}
+#view-pagos .payment-compact-metric.is-warning .payment-metric-icon{color:var(--amber);background:var(--amber-50);border-color:var(--amber-100)}
+#view-pagos .payment-compact-metric.is-purple .payment-metric-icon{color:var(--purple);background:var(--purple-50);border-color:#d7ccf8}
+#view-pagos .payment-compact-metric strong{
+  display:block;
+  max-width:100%;
+  color:var(--text);
+  font-size:18px;
+  font-weight:850;
+  line-height:1.1;
+  letter-spacing:-.35px;
+  overflow-wrap:anywhere;
+}
+#view-pagos .payment-compact-metric>span:last-child{
+  color:var(--muted);
+  font-size:10.5px;
+  font-weight:650;
+  line-height:1.3;
+}
+#view-pagos .payment-compact-metric.is-positive strong{color:var(--green)}
+#view-pagos .payment-compact-metric.is-negative strong{color:var(--red)}
+#view-pagos .payments-filter-details{
+  margin-top:12px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface);
+}
+#view-pagos .payments-filter-details>summary{
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:0 13px;
+  border-radius:12px;
+  color:var(--text-2);
+  font-size:12.5px;
+  font-weight:750;
+}
+#view-pagos .payments-filter-details>summary:hover{background:var(--surface-2)}
+#view-pagos .payments-filter-summary-main{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+#view-pagos .payments-filter-details .finance-chevron{width:28px;height:28px}
+#view-pagos .payments-filter-details[open] .finance-chevron{transform:rotate(180deg)}
+#view-pagos .payments-filter-content{
+  padding:13px;
+  border-top:1px solid var(--border);
+}
+#view-pagos .payments-filter-grid{
+  display:grid;
+  grid-template-columns:minmax(190px,1.15fr) minmax(150px,1fr) minmax(150px,1fr) auto;
+  gap:9px;
+  align-items:end;
+}
+#view-pagos .payments-filter-grid .field{min-width:0}
+#view-pagos .payments-filter-grid label{
+  font-size:10.5px;
+  font-weight:700;
+}
+#view-pagos .payment-filter-reset{
+  min-height:38px;
+  padding:0 12px;
+  border-radius:9px;
+  gap:7px;
+  color:var(--text-2);
+}
+#view-pagos .payments-main-actions .btn:focus-visible,
+#view-pagos .combo-card-actions .btn:focus-visible,
+#view-pagos .payment-movement-actions .btn:focus-visible,
+#view-pagos .promo-action-btn:focus-visible,
+#view-pagos .finance-collapsible-summary:focus-visible,
+#view-pagos .payments-filter-details>summary:focus-visible,
+#view-pagos .payment-filter-reset:focus-visible{
+  outline:3px solid rgba(27,95,204,.24);
+  outline-offset:2px;
+}
+#view-pagos .payments-empty{
+  min-height:100px;
+  display:grid;
+  place-items:center;
+  padding:24px;
+  border:1px dashed var(--border-strong);
+  border-radius:14px;
+  color:var(--muted);
+  background:var(--surface-2);
+  text-align:center;
+  font-size:12.5px;
+}
+@media(max-width:1100px){
+  #view-pagos .promo-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #view-pagos .payments-compact-metrics{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  #view-pagos .combo-grid{grid-template-columns:1fr}
+  #view-pagos .combo-card-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:780px){
+  #view-pagos .payments-page-header{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:13px;
+    margin-bottom:17px;
+  }
+  #view-pagos .payments-heading h2{font-size:22px}
+  #view-pagos .payments-main-actions{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+    width:100%;
+  }
+  #view-pagos .payments-main-actions .btn{
+    width:100%;
+    min-height:46px;
+  }
+  #view-pagos .payments-new-payment-btn{order:1}
+  #view-pagos .payments-new-pack-btn{order:2}
+  #view-pagos .assigned-packs-section,
+  #view-pagos .payment-movements-section,
+  #view-pagos .finance-collapsible,
+  #view-pagos .payments-summary-card{margin-bottom:16px}
+  #view-pagos .finance-section-head{align-items:flex-start}
+  #view-pagos .combo-grid,
+  #view-pagos .promo-catalog{grid-template-columns:1fr}
+  #view-pagos .finance-pack-card{padding:15px;border-radius:16px}
+  #view-pagos .combo-card-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #view-pagos .combo-card-actions .btn{min-height:44px;font-size:12px}
+  #view-pagos .payment-movement-card{padding:14px;border-radius:14px}
+  #view-pagos .payment-movement-bottom{align-items:center}
+  #view-pagos .payment-movement-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:min(100%,300px)}
+  #view-pagos .payment-movement-actions .btn{width:100%;min-width:0;min-height:44px;padding:0 9px}
+  #view-pagos .payment-delete-btn{grid-column:1/-1}
+  #view-pagos .finance-collapsible-summary{min-height:70px;padding:14px 15px}
+  #view-pagos .finance-summary-meta>span:first-child{display:none}
+  #view-pagos .finance-collapsible-content{padding:0 14px 14px}
+  #view-pagos .payments-summary-card{padding:14px}
+  #view-pagos .payments-compact-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  #view-pagos .payment-compact-metric{min-height:102px;padding:11px}
+  #view-pagos .payment-compact-metric.is-primary{grid-column:span 2}
+  #view-pagos .payments-filter-grid{grid-template-columns:1fr 1fr}
+  #view-pagos .payments-filter-period{grid-column:1/-1}
+  #view-pagos .payment-filter-reset{width:auto;justify-self:start}
+}
+@media(max-width:520px){
+  #view-pagos .payment-movement-bottom{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:11px;
+  }
+  #view-pagos .payment-movement-actions{width:100%}
+}
+@media(max-width:430px){
+  #view-pagos .payments-heading h2{font-size:21px}
+  #view-pagos .finance-pack-card{padding:14px 13px}
+  #view-pagos .combo-avatar{width:39px;height:39px}
+  #view-pagos .combo-card-title{font-size:14.5px}
+  #view-pagos .combo-meta-chip{padding:0 8px;font-size:10.5px}
+  #view-pagos .combo-count{padding:8px 4px}
+  #view-pagos .combo-count strong{font-size:16px}
+  #view-pagos .combo-count small{font-size:8.2px;letter-spacing:.2px}
+  #view-pagos .payment-patient-name{font-size:15px}
+  #view-pagos .payment-amount{font-size:21px}
+  #view-pagos .payments-compact-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #view-pagos .payment-compact-metric{min-height:98px;padding:10px}
+  #view-pagos .payment-compact-metric strong{font-size:16.5px}
+  #view-pagos .payments-filter-grid{grid-template-columns:1fr}
+  #view-pagos .payments-filter-period{grid-column:auto}
+  #view-pagos .payment-filter-reset{width:100%}
+  #view-pagos .promo-card-footer{align-items:flex-end}
+}
+
 </style>
 </head>
 <body>
@@ -2301,6 +3241,10 @@ async function flushDeletes(){
  if(results.some(result=>result.status==='rejected')){setSync('offline','Eliminaciones pendientes','Reintento automático');scheduleRetry()}
 }
 function scheduleRetry(){clearTimeout(syncRetryTimer);syncRetryTimer=setTimeout(async()=>{if(!navigator.onLine)return;if(!cloudReady)await initFirebase();else{refreshSyncLeadership();await flushDeletes();await writeDirtyEntities()}},SYNC_RETRY_DELAY)}
+window.addEventListener('online',()=>{setSync('syncing','Reconectando','Enviando cambios pendientes');initFirebase().then(()=>scheduleCloudWrite(50))});
+window.addEventListener('offline',()=>setSync('offline','Sin conexión','Cambios guardados localmente'));
+leaderHeartbeat=setInterval(refreshSyncLeadership,3000);
+window.addEventListener('beforeunload',()=>{clearTimeout(syncWriteTimer);clearTimeout(syncRetryTimer);clearInterval(leaderHeartbeat);const leader=readLeader();if(leader?.tabId===TAB_ID)localStorage.removeItem(SYNC_LEADER_KEY)});
 function mergePendingDeletes(incoming=[]){let changed=false;data.pendingDeletes=data.pendingDeletes||[];for(const raw of incoming){const deletion=withNormalizedRevision(raw),cfg=ENTITY_COLLECTIONS[deletion.key];if(!cfg)continue;const local=(data[cfg.key]||[]).find(item=>item.id===deletion.id);if(local?._dirty)continue;if(local){data[cfg.key]=data[cfg.key].filter(item=>item.id!==deletion.id);changed=true}const index=data.pendingDeletes.findIndex(item=>item.key===deletion.key&&item.id===deletion.id);if(index<0){data.pendingDeletes.push(deletion);changed=true}else if(entityRevision(deletion)>=entityRevision(withNormalizedRevision(data.pendingDeletes[index]))){data.pendingDeletes[index]=deletion;changed=true}}return changed}
 function mergeRemoteState(incoming={}){let changed=false;for(const cfg of Object.values(ENTITY_COLLECTIONS)){const before=collectionSignature(data[cfg.key]||[]),current=new Map((data[cfg.key]||[]).map(item=>[item.id,item]));for(const raw of incoming[cfg.key]||[]){const item=normalizeRemoteEntity(cfg.key,raw),local=current.get(item.id);if(!local){current.set(item.id,item);continue}if(local._dirty&&local._writeId!==item._writeId)continue;if(entityRevision(item)>=entityRevision(local))current.set(item.id,normalizeEntityItem(cfg.key,item))}data[cfg.key]=[...current.values()];changed=changed||before!==collectionSignature(data[cfg.key])}const incomingMeta=withNormalizedRevision(incoming.meta||{}),localMeta=withNormalizedRevision(data.meta||{});if((!localMeta._dirty||localMeta._writeId===incomingMeta._writeId)&&entityRevision(incomingMeta)>=entityRevision(localMeta)){const next={...localMeta,...incomingMeta};if(syncComparable(next)!==syncComparable(localMeta)||Boolean(next._dirty)!==Boolean(localMeta._dirty)){data.meta=next;changed=true}}changed=mergePendingDeletes(incoming.pendingDeletes||[])||changed;return changed}
 function applyWriteAcknowledgement(records=[]){let changed=false;for(const record of records){if(record.kind==='meta'||record.key==='meta'){if(data.meta?._dirty&&data.meta._writeId===record.writeId){data.meta._dirty=false;delete data.meta._patch;changed=true}continue}const cfg=ENTITY_COLLECTIONS[record.key],item=cfg?(data[cfg.key]||[]).find(entity=>entity.id===record.id):null;if(item?._dirty&&item._writeId===record.writeId){item._dirty=false;delete item._patch;changed=true}}return changed}
@@ -2475,8 +3419,10 @@ function saveAnamnesis(){collectWizard();const dni=normalizeDni(ui.record.dni);i
 
 /* EVOLUCIONES */
 function allEvolutions(){return data.patients.flatMap(p=>(p.evoluciones||[]).map(e=>({...e,patientId:p.id,patientName:p.nombre}))).sort((a,b)=>evolutionTime(b)-evolutionTime(a))}
-function renderEvolutionList(items,patientId=''){return`<div class="list">${items.slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha)).map(e=>`<div class="item"><div class="item-main"><strong>${patientId?evolutionDateLabel(e):esc(e.patientName)}</strong><span>${patientId?esc(e.observaciones||'Sin observaciones'):`${evolutionDateLabel(e)} · ${esc(e.observaciones||'Sin observaciones')}`}</span><div class="routine-card-meta"><span class="badge b-blue">EVA actividad ${Number(e.evaActividad||0)}</span><span class="badge b-gray">EVA reposo ${Number(e.evaReposo||0)}</span></div></div><div class="item-right"><button class="btn btn-sm" data-action="edit-evolution" data-patient-id="${patientId||e.patientId}" data-id="${e.id}">Editar</button><button class="btn btn-sm btn-danger" data-action="delete-evolution" data-patient-id="${patientId||e.patientId}" data-id="${e.id}">Eliminar</button></div></div>`).join('')||'<div class="empty">Sin evoluciones registradas</div>'}</div>`}
-function renderEvoluciones(){const list=allEvolutions();$('#view-evoluciones').innerHTML=`<div class="page-header"><div class="page-header-left"><h2>Evoluciones clínicas</h2><p>Seguimiento integrado por paciente</p></div><button class="btn btn-primary" data-action="new-evolution">+ Registrar evolución</button></div><div class="card">${renderEvolutionList(list)}</div>`}
+function evolutionInitials(name=''){const value=String(name||'SN').trim();if(!value)return'SN';return value.split(/\s+/).slice(0,2).map(part=>part.charAt(0)).join('').toUpperCase()||'SN'}
+function evolutionAccentClass(index=0){return`accent-${Math.abs(Number(index)||0)%4}`}
+function renderEvolutionList(items,patientId=''){const patientContext=Boolean(patientId);const sorted=[...(Array.isArray(items)?items:[])].sort((a,b)=>evolutionTime(b)-evolutionTime(a));const calendarIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>';const editIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"></path></svg>';const deleteIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v5M14 11v5"></path></svg>';return`<div class="evolution-list ${patientContext?'is-patient-context':'is-global-context'}">${sorted.map((e,index)=>{const ownerId=patientId||e.patientId||'';const displayName=patientContext?'':(e.patientName||'Sin nombre');const initials=evolutionInitials(displayName||'EV');const dateLabel=evolutionDateLabel(e);const plan=String(e.planAplicado||'').trim();const evaActividad=Number.isFinite(Number(e.evaActividad))?Number(e.evaActividad):0;const evaReposo=Number.isFinite(Number(e.evaReposo))?Number(e.evaReposo):0;return`<article class="evolution-card ${evolutionAccentClass(index)}"><span class="evolution-card-accent" aria-hidden="true"></span><div class="evolution-card-header">${patientContext?`<div class="evolution-context-date">${calendarIcon}<strong>${esc(dateLabel)}</strong></div>`:`<div class="evolution-patient"><span class="evolution-avatar" aria-hidden="true">${esc(initials)}</span><div class="evolution-patient-text"><strong>${esc(displayName)}</strong><span>Paciente</span></div></div><span class="evolution-date-chip">${calendarIcon}<span>${esc(dateLabel)}</span></span>`}</div><p class="evolution-observation">${esc(e.observaciones||'Sin observaciones')}</p>${plan?`<div class="evolution-plan"><small>Plan aplicado</small><span>${esc(plan)}</span></div>`:''}<div class="evolution-eva-row"><span class="evolution-eva evolution-eva-activity">EVA actividad ${evaActividad}</span><span class="evolution-eva evolution-eva-rest">EVA reposo ${evaReposo}</span></div><div class="evolution-actions"><button type="button" class="btn evolution-action-btn evolution-edit-btn" data-action="edit-evolution" data-patient-id="${esc(ownerId)}" data-id="${esc(e.id)}">${editIcon}<span>Editar</span></button><button type="button" class="btn evolution-action-btn evolution-delete-btn" data-action="delete-evolution" data-patient-id="${esc(ownerId)}" data-id="${esc(e.id)}">${deleteIcon}<span>Eliminar</span></button></div></article>`}).join('')||`<div class="empty evolution-empty"><span class="evolution-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6M8 13h8M8 17h6"></path></svg></span><strong>Sin evoluciones registradas</strong><p>Las evoluciones clínicas aparecerán en esta sección.</p></div>`}</div>`}
+function renderEvoluciones(){const list=allEvolutions();const patientsWithEvolutions=new Set(list.map(item=>item.patientId).filter(Boolean)).size;const now=new Date();const monthCount=list.filter(item=>{if(!item?.fecha)return false;const raw=String(item.fecha);const date=new Date(/^\d{4}-\d{2}-\d{2}$/.test(raw)?`${raw}T12:00:00`:raw);return!Number.isNaN(date.getTime())&&date.getMonth()===now.getMonth()&&date.getFullYear()===now.getFullYear()}).length;setElementHtml($('#view-evoluciones'),`<section class="evolutions-page"><div class="evolutions-page-header"><div class="evolutions-heading"><h2>Evoluciones clínicas</h2><p>Seguimiento integrado por paciente</p></div><button type="button" class="btn btn-primary evolution-create-btn" data-action="new-evolution"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg><span>Registrar evolución</span></button></div><div class="evolution-metrics"><article class="evolution-metric-card metric-total"><span class="evolution-metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12a2 2 0 0 1 2 2v16H4V5a2 2 0 0 1 2-2Z"></path><path d="M8 8h8M8 12h8M8 16h5"></path></svg></span><div class="evolution-metric-copy"><strong>${list.length}</strong><span class="evolution-metric-label">Evoluciones</span><small>registradas</small></div></article><article class="evolution-metric-card metric-patients"><span class="evolution-metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="m16 11 2 2 4-4"></path></svg></span><div class="evolution-metric-copy"><strong>${patientsWithEvolutions}</strong><span class="evolution-metric-label">Pacientes</span><small>con seguimiento</small></div></article><article class="evolution-metric-card metric-month"><span class="evolution-metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg></span><div class="evolution-metric-copy"><strong>${monthCount}</strong><span class="evolution-metric-label">Este mes</span><small>evoluciones</small></div></article></div><div class="evolution-section-head"><div><h3>Evoluciones registradas</h3><p>Ordenadas desde la más reciente</p></div></div>${renderEvolutionList(list)}</section>`)}
 function openEvolutionForm(patientId='',evolutionId=''){const patient=patientId?getPatient(patientId):null;const evo=patient?.evoluciones?.find(e=>e.id===evolutionId)||{};openModal(evolutionId?'Editar evolución':'Registrar evolución',`<form id="evolutionForm" class="form-grid"><input type="hidden" name="id" value="${esc(evo.id||'')}"><div class="field full"><label>Paciente *</label><select class="select" name="patientId" required>${data.patients.map(p=>`<option value="${p.id}" ${p.id===(patientId||evo.patientId)?'selected':''}>${esc(p.nombre)}</option>`).join('')}</select></div><div class="field"><label>Fecha *</label><input class="input" name="fecha" type="date" required value="${esc(evo.fecha||todayISO())}"></div><div class="field"><label>Plan aplicado</label><input class="input" name="planAplicado" value="${esc(evo.planAplicado||'')}"></div><div class="field"><label>EVA en actividad</label><input class="input" name="evaActividad" type="number" min="0" max="10" value="${Number(evo.evaActividad||0)}"></div><div class="field"><label>EVA en reposo</label><input class="input" name="evaReposo" type="number" min="0" max="10" value="${Number(evo.evaReposo||0)}"></div><div class="field full"><label>Observaciones</label><textarea class="textarea" name="observaciones">${esc(evo.observaciones||'')}</textarea></div></form>`,`<button class="btn" data-action="close-modal">Cancelar</button><button class="btn btn-primary" data-action="save-evolution">Guardar evolución</button>`,'wide')}
 function saveEvolution(){const form=$('#evolutionForm');if(!form.reportValidity())return;const v=Object.fromEntries(new FormData(form)),p=getPatient(v.patientId);if(!p)return;const evo=created({id:v.id||uid('evolution'),fecha:v.fecha,evaActividad:Number(v.evaActividad||0),evaReposo:Number(v.evaReposo||0),planAplicado:v.planAplicado,observaciones:v.observaciones});const arr=[...(p.evoluciones||[])],idx=arr.findIndex(e=>e.id===evo.id);if(idx>=0)arr[idx]={...arr[idx],...evo};else arr.unshift(evo);upsertEntity('patients',{...p,evoluciones:arr,ultimaConsulta:v.fecha,evaActividad:evo.evaActividad,evaReposo:evo.evaReposo});closeModal();renderAll();toast('Evolución guardada')}
 function deleteEvolution(patientId,id){const p=getPatient(patientId);if(!p)return;openConfirm('Eliminar evolución','La evolución se eliminará de la ficha clínica.',()=>{upsertEntity('patients',{...p,evoluciones:(p.evoluciones||[]).filter(e=>e.id!==id)});closeConfirm();if(ui.selectedPatientId===patientId)renderPatientProfile();else renderEvoluciones();toast('Evolución eliminada','info')})}
@@ -2664,8 +3610,20 @@ function saveTurn(){const form=$('#turnForm');if(!form.reportValidity())return;c
 function deleteTurn(id){const turn=getTurnById(id);if(!turn)return;if(getPaymentByTurn(id))return toast('No se puede eliminar un turno que tiene un pago vinculado. Eliminá primero el pago','error');openConfirm('Eliminar turno','El turno será removido de la agenda. Si estaba incluido en un combo, la sesión volverá a quedar disponible.',async()=>{await removeEntity('turns',id);closeConfirm();renderTurnos(turn.fecha);renderInicio();renderPagos();toast('Turno eliminado','info')})}
 
 /* PAGOS, REPORTES Y CONFIGURACIÓN */
-function renderPromoCard(promo){const action=promo.kind==='single'?'new-turn-promo':'new-combo-promo',button=promo.kind==='single'?'Agendar sesión':'Asignar a paciente',validity=promo.sameMonth?'Usable dentro del mismo mes':'Cobro por sesión';return`<article class="promo-card"><div class="promo-card-top"><div><div class="promo-service">${esc(promo.service)}</div><div class="promo-name">${esc(promo.kind==='single'?'Sesión suelta':promo.name.split(' · ')[1]||promo.name)}</div></div><div class="promo-price">${money(promo.price)}</div></div><div class="promo-detail">${esc(promo.frequency)}</div><div class="promo-validity">${esc(validity)}</div><button class="btn btn-sm ${promo.kind==='single'?'':'btn-primary'}" data-action="${action}" data-promo-id="${promo.id}">${button}</button></article>`}
-function renderPromoCatalog(){return`<section class="finance-section"><div class="finance-section-head"><div><h3>Tarifas y promociones</h3><p>Valores preestablecidos para sesiones sueltas, packs quincenales y mensuales</p></div></div><div class="promo-catalog">${PROMO_CATALOG.map(renderPromoCard).join('')}</div></section>`}
+function renderPromoCard(promo){
+ const action=promo.kind==='single'?'new-turn-promo':'new-combo-promo';
+ const button=promo.kind==='single'?'Agendar sesión':'Asignar';
+ const validity=promo.sameMonth?'Usable dentro del mismo mes':'Cobro por sesión';
+ const displayName=promo.kind==='single'?'Sesión suelta':promo.name.split(' · ')[1]||promo.name;
+ const actionIcon=promo.kind==='single'
+  ?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4"/></svg>'
+  :'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>';
+ return`<article class="promo-card compact-promo-card"><div class="promo-card-main"><div class="promo-card-copy"><span class="promo-service">${esc(promo.service)}</span><strong class="promo-name">${esc(displayName)}</strong><span class="promo-detail">${esc(promo.frequency)}</span></div><strong class="promo-price">${money(promo.price)}</strong></div><div class="promo-card-footer"><span class="promo-validity">${esc(validity)}</span><button type="button" class="btn promo-action-btn ${promo.kind==='single'?'':'btn-primary'}" data-action="${action}" data-promo-id="${esc(promo.id)}">${actionIcon}<span>${button}</span></button></div></article>`
+}
+function renderPromoCatalog(){
+ const desktopOpen=window.matchMedia?.('(min-width: 781px)').matches?' open':'';
+ return`<details class="finance-collapsible finance-promotions"${desktopOpen}><summary class="finance-collapsible-summary"><div><h3>Tarifas y promociones</h3><p>Valores preestablecidos para sesiones y packs</p></div><div class="finance-summary-meta"><span>${PROMO_CATALOG.length} opciones</span><span class="finance-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></div></summary><div class="finance-collapsible-content"><div class="promo-catalog">${PROMO_CATALOG.map(renderPromoCard).join('')}</div></div></details>`
+}
 function paymentDateValue(payment){return dateOnly(payment?.date||payment?.createdAt||payment?.updatedAt)}
 function paymentRangeForPeriod(){
  const period=ui.paymentFilters?.period||'all',today=todayISO();
@@ -2696,10 +3654,12 @@ function renderPagos(){
  const allPayments=data.payments.slice().sort((a,b)=>new Date(b.date||b.createdAt||0)-new Date(a.date||a.createdAt||0));
  const payments=range.from||range.to?allPayments.filter(payment=>paymentWithinRange(payment,range.from,range.to)):allPayments;
  const previousPayments=range.previousFrom&&range.previousTo?allPayments.filter(payment=>paymentWithinRange(payment,range.previousFrom,range.previousTo)):[];
- const collected=collectedPaymentsTotal(payments),previousCollected=collectedPaymentsTotal(previousPayments);
- const variation=range.previousFrom?(previousCollected>0?Math.round(((collected-previousCollected)/previousCollected)*100):(collected>0?null:0)):null;
- const variationLabel=variation===null?(range.previousFrom?'Sin base anterior':'—'):`${variation>0?'+':''}${variation}%`;
- const variationNote=range.previousFrom?`${fmtDate(range.previousFrom)} al ${fmtDate(range.previousTo)}`:'Seleccioná semana, mes, año o fechas';
+ const collected=collectedPaymentsTotal(payments);
+ const previousCollected=collectedPaymentsTotal(previousPayments);
+ const variation=range.previousFrom&&previousCollected>0?((collected-previousCollected)/previousCollected)*100:null;
+ const variationLabel=variation===null?'—':`${variation>0?'+':''}${Math.round(variation)}%`;
+ const variationClass=variation===null?'':variation>0?'is-positive':variation<0?'is-negative':'';
+ const previousLabel=range.previousFrom?`${fmtDate(range.previousFrom)} al ${fmtDate(range.previousTo)}`:'Sin comparación';
  const pendingTurns=data.turns.filter(turn=>!turn.comboId&&turn.estado!=='Cancelado'&&Number(turn.price)>0&&!getPaymentByTurn(turn.id)).reduce((sum,turn)=>sum+Number(turn.price||0),0);
  const pendingCombos=data.packages.filter(combo=>!getPaymentByCombo(combo.id)).reduce((sum,combo)=>sum+Number(combo.price||0),0);
  const activeCombos=data.packages.filter(combo=>comboComputedStatus(combo)==='Vigente').length;
@@ -2708,11 +3668,40 @@ function renderPagos(){
  const custom=range.period==='custom';
  const fromValue=custom?(ui.paymentFilters.from||''):(range.from||'');
  const toValue=custom?(ui.paymentFilters.to||''):(range.to||'');
- setElementHtml($('#view-pagos'),`<div class="page-header"><div class="page-header-left"><h2>Pagos y promociones</h2><p>Tarifas, turnos, cobros y vigencia de packs por paciente</p></div><div class="finance-actions"><button type="button" class="btn" data-action="new-combo">+ Pack personalizado</button><button type="button" class="btn btn-primary" data-action="new-payment">+ Registrar pago</button></div></div><section class="card payment-filter-panel" style="margin-bottom:16px"><div class="card-head" style="margin-bottom:12px"><div><div class="card-title">Filtro y comparación de ingresos</div><div class="card-sub">${esc(range.label)} · ${payments.length} movimiento${payments.length===1?'':'s'}</div></div><button type="button" class="btn btn-sm" data-action="reset-payment-filters">Restablecer</button></div><div class="payment-filter-grid"><div class="field"><label>Período</label><select class="select" id="paymentPeriodFilter"><option value="all" ${range.period==='all'?'selected':''}>Todo el historial</option><option value="week" ${range.period==='week'?'selected':''}>Semana actual</option><option value="month" ${range.period==='month'?'selected':''}>Mes actual</option><option value="year" ${range.period==='year'?'selected':''}>Año actual</option><option value="custom" ${range.period==='custom'?'selected':''}>Rango de fechas</option></select></div><div class="field"><label>Desde</label><input class="input" id="paymentFromFilter" type="date" value="${esc(fromValue)}" ${custom?'':'disabled'}></div><div class="field"><label>Hasta</label><input class="input" id="paymentToFilter" type="date" value="${esc(toValue)}" ${custom?'':'disabled'}></div></div></section><div class="grid metrics"><article class="card metric"><div class="metric-label">Ingresos del período</div><div class="metric-value">${money(collected)}</div><div class="metric-note">${esc(range.label)}</div></article><article class="card metric"><div class="metric-label">Período anterior</div><div class="metric-value">${range.previousFrom?money(previousCollected):'—'}</div><div class="metric-note">${esc(variationNote)}</div></article><article class="card metric"><div class="metric-label">Variación de ingresos</div><div class="metric-value">${esc(variationLabel)}</div><div class="metric-note">Comparación contra período equivalente</div></article><article class="card metric"><div class="metric-label">Pendiente en turnos</div><div class="metric-value">${money(pendingTurns)}</div><div class="metric-note">Sesiones sueltas sin pago</div></article><article class="card metric"><div class="metric-label">Pendiente en packs</div><div class="metric-value">${money(pendingCombos)}</div><div class="metric-note">Packs sin pago</div></article><article class="card metric"><div class="metric-label">Packs vigentes</div><div class="metric-value">${activeCombos}</div><div class="metric-note">${expiring} vencen en 7 días</div></article></div>${renderPromoCatalog()}<section class="finance-section"><div class="finance-section-head"><div><h3>Packs asignados</h3><p>Vigencia, frecuencia, sesiones usadas, reservadas y disponibles</p></div></div><div class="combo-grid">${combos.map(renderComboCard).join('')||'<div class="empty finance-empty">No hay packs registrados</div>'}</div></section><section class="finance-section"><div class="finance-section-head"><div><h3>Movimientos</h3><p>${esc(range.label)} · pagos vinculados a turnos, packs o cargados sin turno</p></div></div><div class="card"><div class="list">${payments.map(payment=>{const refs=paymentActivityRefs(payment),name=refs.patient?.nombre||payment.patientName||'Sin paciente';return`<div class="item"><div class="item-main"><div class="payment-concept">${esc(payment.type)}</div><strong>${esc(name)}</strong><span>${fmtDate(payment.date)} · ${esc(payment.method)} · ${esc(paymentConcept(payment))}</span></div><div class="item-right"><strong>${money(payment.amount)}</strong>${statusBadge(payment.status)}${refs.patient?`<button type="button" class="btn btn-sm" data-action="profile" data-id="${esc(refs.patient.id)}">Ficha</button>`:''}<button type="button" class="btn btn-sm" data-action="edit-payment" data-id="${esc(payment.id)}">Editar</button><button type="button" class="btn btn-sm btn-danger" data-action="delete-payment" data-id="${esc(payment.id)}">Eliminar</button></div></div>`}).join('')||'<div class="empty">No hay movimientos en el período seleccionado</div>'}</div></div></section>`)
+ const desktop=Boolean(window.matchMedia?.('(min-width: 781px)').matches);
+ const filtersOpen=desktop||range.period!=='all';
+ const movementLabel=`${range.label} · ${payments.length} movimiento${payments.length===1?'':'s'}`;
+ const plusIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+ const packIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14M7.5 7C5.6 7 4 5.9 4 4.5S5.2 2 6.8 2C9.3 2 12 7 12 7s2.7-5 5.2-5C18.8 2 20 3.1 20 4.5S18.4 7 16.5 7"/></svg>';
+ const userIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
+ const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>';
+ const deleteIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 10v7M14 10v7"/></svg>';
+ const movementCards=payments.map(payment=>{
+  const refs=paymentActivityRefs(payment);
+  const name=refs.patient?.nombre||payment.patientName||'Sin paciente';
+  return`<article class="payment-movement-card"><div class="payment-movement-head"><div class="payment-movement-identity"><span class="payment-concept">${esc(payment.type||'Pago')}</span><strong class="payment-patient-name">${esc(name)}</strong></div>${statusBadge(payment.status)}</div><div class="payment-movement-meta">${fmtDate(payment.date||payment.createdAt)} · ${esc(payment.method||'Sin método')} · ${esc(paymentConcept(payment))}</div><div class="payment-movement-bottom"><strong class="payment-amount">${money(payment.amount)}</strong><div class="payment-movement-actions">${refs.patient?`<button type="button" class="btn payment-profile-btn" data-action="profile" data-id="${esc(refs.patient.id)}">${userIcon}<span>Ficha</span></button>`:''}<button type="button" class="btn payment-edit-btn" data-action="edit-payment" data-id="${esc(payment.id)}">${editIcon}<span>Editar</span></button><button type="button" class="btn payment-delete-btn" data-action="delete-payment" data-id="${esc(payment.id)}">${deleteIcon}<span>Eliminar</span></button></div></div></article>`
+ }).join('')||'<div class="payments-empty">No hay movimientos en el período seleccionado</div>';
+ setElementHtml($('#view-pagos'),`<div class="payments-dashboard"><header class="payments-page-header"><div class="payments-heading"><h2>Pagos y promociones</h2><p>Tarifas, turnos, cobros y vigencia de packs por paciente</p></div><div class="payments-main-actions"><button type="button" class="btn payments-new-pack-btn" data-action="new-combo">${packIcon}<span>Pack personalizado</span></button><button type="button" class="btn btn-primary payments-new-payment-btn" data-action="new-payment">${plusIcon}<span>Registrar pago</span></button></div></header><section class="finance-section assigned-packs-section"><div class="finance-section-head"><div><h3>Packs asignados</h3><p>Vigencia, frecuencia, sesiones usadas, reservadas y disponibles</p></div></div><div class="combo-grid">${combos.map(renderComboCard).join('')||'<div class="payments-empty finance-empty">No hay packs registrados</div>'}</div></section><section class="finance-section payment-movements-section"><div class="finance-section-head"><div><h3>Movimientos</h3><p>${esc(movementLabel)}</p></div></div><div class="payment-movements-list">${movementCards}</div></section>${renderPromoCatalog()}<section class="payments-summary-card"><div class="payments-summary-head"><div><h3>Resumen del período</h3><p>${esc(range.label)}</p></div></div><div class="payments-compact-metrics"><article class="payment-compact-metric is-primary"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M16 8.5c-.9-.8-2.1-1.2-3.5-1.2-1.9 0-3.2.9-3.2 2.3 0 1.5 1.2 2.1 3.4 2.5 2.1.4 3.1 1 3.1 2.5 0 1.5-1.4 2.5-3.4 2.5-1.6 0-3-.5-4-1.5M12 5.5v13"/></svg></span><strong>${money(collected)}</strong><span>Ingresos del período</span></article><article class="payment-compact-metric is-success"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg></span><strong>${range.previousFrom?money(previousCollected):'—'}</strong><span>Período anterior</span></article><article class="payment-compact-metric is-purple ${variationClass}"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><path d="M4 18V6M4 18h16"/><path d="m7 14 4-4 3 3 5-6"/></svg></span><strong>${esc(variationLabel)}</strong><span>Variación</span></article><article class="payment-compact-metric is-warning"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><strong>${money(pendingTurns)}</strong><span>Pendiente en turnos</span></article><article class="payment-compact-metric is-purple"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/></svg></span><strong>${money(pendingCombos)}</strong><span>Pendiente en packs</span></article><article class="payment-compact-metric is-success"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.5 17 19 7.5"/></svg></span><strong>${activeCombos}</strong><span>Packs vigentes</span></article><article class="payment-compact-metric is-warning"><span class="payment-metric-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M12 14v3"/></svg></span><strong>${expiring}</strong><span>Packs próximos a vencer</span></article></div><details class="payments-filter-details"${filtersOpen?' open':''}><summary><span class="payments-filter-summary-main"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16l-6 7v5l-4 2v-7Z"/></svg><span>Filtros y comparación</span></span><span class="finance-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="payments-filter-content"><div class="payments-filter-grid"><div class="field payments-filter-period"><label>Período</label><select class="select" id="paymentPeriodFilter"><option value="all" ${range.period==='all'?'selected':''}>Todo el historial</option><option value="week" ${range.period==='week'?'selected':''}>Esta semana</option><option value="month" ${range.period==='month'?'selected':''}>Este mes</option><option value="year" ${range.period==='year'?'selected':''}>Este año</option><option value="custom" ${range.period==='custom'?'selected':''}>Rango personalizado</option></select></div><div class="field"><label>Desde</label><input class="input" id="paymentFromFilter" type="date" value="${esc(fromValue)}" ${custom?'':'disabled'}></div><div class="field"><label>Hasta</label><input class="input" id="paymentToFilter" type="date" value="${esc(toValue)}" ${custom?'':'disabled'}></div><button type="button" class="btn payment-filter-reset" data-action="reset-payment-filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>Restablecer</span></button></div><div class="card-sub" style="margin-top:10px">Comparación: ${esc(previousLabel)}</div></div></details></section></div>`)
 }
 function openPaymentForm(prefill={}){const existing=prefill.paymentId?data.payments.find(payment=>payment.id===prefill.paymentId)||null:null,selectedTurn=prefill.turnId?getTurnById(prefill.turnId):existing?.turnId?getTurnById(existing.turnId):null,selectedCombo=prefill.comboId?getCombo(prefill.comboId):existing?.comboId?getCombo(existing.comboId):null,patientId=prefill.patientId||existing?.patientId||selectedTurn?.patientId||selectedCombo?.patientId||'',type=existing?.type?(existing.type==='Pack / combo'?'Pack / combo':existing.type==='Turno'?'Turno':'Pago sin turno'):(selectedTurn?'Turno':selectedCombo?'Pack / combo':'Pago sin turno');openModal(existing?'Editar pago':'Registrar pago',`<form id="paymentForm" class="form-grid"><input type="hidden" name="id" value="${esc(existing?.id||'')}"><div class="field"><label>Concepto *</label><select class="select" name="type" id="paymentType"><option ${type==='Turno'?'selected':''}>Turno</option><option ${type==='Pack / combo'?'selected':''}>Pack / combo</option><option value="Pago sin turno" ${type==='Pago sin turno'?'selected':''}>Pago sin turno</option></select></div><div class="field"><label>Paciente *</label><select class="select" name="patientId" id="paymentPatient" required><option value="">Seleccionar</option>${data.patients.map(patient=>`<option value="${patient.id}" ${patient.id===patientId?'selected':''}>${esc(patient.nombre)}</option>`).join('')}</select></div><div class="field full" id="paymentReferenceField"><label id="paymentReferenceLabel">Turno vinculado *</label><select class="select" name="referenceId" id="paymentReference"></select></div><div class="field"><label>Monto *</label><input class="input" name="amount" id="paymentAmount" type="number" min="0" step="1" required value="${existing?Number(existing.amount||0):''}"></div><div class="field"><label>Fecha</label><input class="input" name="date" id="paymentDate" type="date" value="${existing?.date||todayISO()}"></div><div class="field"><label>Método</label><select class="select" name="method">${['Efectivo','Transferencia','Tarjeta'].map(method=>`<option ${method===(existing?.method||'Efectivo')?'selected':''}>${method}</option>`).join('')}</select></div><div class="field"><label>Estado</label><select class="select" name="status"><option ${existing?.status!=='Pendiente'?'selected':''}>Cobrado</option><option ${existing?.status==='Pendiente'?'selected':''}>Pendiente</option></select></div><div class="field full"><label>Observación</label><input class="input" name="notes" value="${esc(existing?.notes||'')}"></div><div class="field full"><div class="billing-note" id="paymentHelp">Seleccioná un turno para completar automáticamente el monto y la fecha.</div></div></form>`,`<button class="btn" data-action="close-modal">Cancelar</button><button class="btn btn-primary" data-action="save-payment">${existing?'Actualizar':'Guardar'}</button>`,'wide');const typeSelect=$('#paymentType'),patientSelect=$('#paymentPatient'),referenceField=$('#paymentReferenceField'),referenceLabel=$('#paymentReferenceLabel'),referenceSelect=$('#paymentReference'),amountInput=$('#paymentAmount'),dateInput=$('#paymentDate'),help=$('#paymentHelp');const initialReference=selectedTurn?.id||selectedCombo?.id||'';const refreshReferences=()=>{const concept=typeSelect.value,pid=patientSelect.value;referenceField.hidden=concept==='Pago sin turno'||concept==='Otro';referenceSelect.required=concept==='Turno'||concept==='Pack / combo';if(concept==='Turno'){referenceLabel.textContent='Turno vinculado *';const turns=data.turns.filter(turn=>turn.patientId===pid&&(!getPaymentByTurn(turn.id)||turn.id===existing?.turnId)).sort((a,b)=>`${b.fecha} ${b.hora}`.localeCompare(`${a.fecha} ${a.hora}`));referenceSelect.innerHTML=`<option value="">Seleccionar turno</option>${turns.map(turn=>`<option value="${turn.id}" ${turn.id===initialReference?'selected':''}>${fmtDate(turn.fecha)} · ${esc(turn.hora)} · ${esc(turn.motivo)} · ${money(turn.price)}</option>`).join('')}`;help.textContent=turns.length?'El pago quedará enlazado al turno seleccionado y se verá en la agenda.':'Este paciente no tiene turnos disponibles. Elegí “Pago sin turno” en Concepto para registrar el cobro igualmente.'}else if(concept==='Pack / combo'){referenceLabel.textContent='Pack vinculado *';const combos=getPatientCombos(pid).filter(combo=>!getPaymentByCombo(combo.id)||combo.id===existing?.comboId);referenceSelect.innerHTML=`<option value="">Seleccionar pack</option>${combos.map(combo=>`<option value="${combo.id}" ${combo.id===initialReference?'selected':''}>${esc(combo.name)} · ${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)} · ${money(combo.price)}</option>`).join('')}`;help.textContent='El pago quedará enlazado al pack y conservará su vigencia y cantidad de sesiones.'}else{referenceSelect.innerHTML='';help.textContent='El pago se registrará para el paciente sin exigir un turno o pack vinculado.'}syncReference()};const syncReference=()=>{const concept=typeSelect.value,referenceId=referenceSelect.value;if(concept==='Turno'){const turn=getTurnById(referenceId);if(turn){if(!amountInput.value||!existing)amountInput.value=Number(turn.price||0);dateInput.value=turn.fecha}}else if(concept==='Pack / combo'){const combo=getCombo(referenceId);if(combo){if(!amountInput.value||!existing)amountInput.value=Number(combo.price||0);dateInput.value=combo.startDate}}};typeSelect.addEventListener('change',refreshReferences);patientSelect.addEventListener('change',refreshReferences);referenceSelect.addEventListener('change',syncReference);refreshReferences()}
 function savePayment(){const form=$('#paymentForm');if(!form.reportValidity())return;const values=Object.fromEntries(new FormData(form)),existing=values.id?data.payments.find(payment=>payment.id===values.id)||null:null,patient=getPatient(values.patientId);if(!patient)return toast('Seleccioná un paciente','error');let turnId='',comboId='',date=values.date,type=values.type;if(type==='Turno'){const turn=getTurnById(values.referenceId);if(!turn||turn.patientId!==patient.id)return toast('Seleccioná un turno válido del paciente','error');if(turn.comboId)return toast('Ese turno está incluido en un pack y no debe cobrarse por separado','error');if(data.payments.some(payment=>payment.turnId===turn.id&&payment.id!==existing?.id))return toast('El turno ya tiene un pago registrado','error');turnId=turn.id;date=turn.fecha}else if(type==='Pack / combo'){const combo=getCombo(values.referenceId);if(!combo||combo.patientId!==patient.id)return toast('Seleccioná un pack válido del paciente','error');if(data.payments.some(payment=>payment.comboId===combo.id&&payment.id!==existing?.id))return toast('El pack ya tiene un pago registrado','error');comboId=combo.id;date=values.date||combo.startDate}else type='Pago sin turno';const payment=normalizePayment({...existing,id:existing?.id||uid('payment'),patientId:patient.id,patientName:patient.nombre,type,turnId,comboId,amount:Number(values.amount||0),date,method:values.method,status:values.status,notes:values.notes});upsertEntity('payments',payment);closeModal();renderPagos();renderTurnos(date);toast(existing?'Pago actualizado':'Pago registrado')}
-function renderComboCard(combo){const patient=getPatient(combo.patientId),usage=comboUsage(combo),status=comboComputedStatus(combo),payment=getPaymentByCombo(combo.id),days=daysUntil(combo.endDate),expiry=status==='Vigente'&&days<=7?`<span class="badge b-warn">Vence en ${Math.max(0,days)} día${days===1?'':'s'}</span>`:'',schedule=comboScheduleInfo(combo),scheduleNote=schedule&&usage.remaining>0?`<div class="combo-schedule-note">Próxima sesión sugerida: <strong>${fmtDate(schedule.nextDate)}</strong>${schedule.withinValidity?'':'. No entra dentro de la vigencia actual.'}</div>`:'';return`<article class="combo-card"><div class="combo-card-head"><div><div class="combo-card-title">${esc(combo.name)}</div><div class="combo-card-patient">${esc(patient?.nombre||combo.patientName||'Sin paciente')}</div></div>${statusBadge(status)}</div><div class="combo-meta">${combo.serviceType?`<span class="badge b-blue">${esc(combo.serviceType)}</span>`:''}${combo.frequencyLabel?`<span class="badge b-gray">${esc(combo.frequencyLabel)}</span>`:''}<span class="badge b-gray">${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}</span><span class="badge ${payment?.status==='Cobrado'?'b-ok':'b-warn'}">${payment?.status||'Sin cobrar'} · ${money(combo.price)}</span>${expiry}</div><div class="combo-validity"><span>Ocupación del pack</span><strong>${usage.assigned}/${usage.total}</strong></div><div class="combo-progress"><span style="width:${usage.pct}%"></span></div><div class="combo-counts"><div class="combo-count"><strong>${usage.used}</strong><small>Usadas</small></div><div class="combo-count"><strong>${usage.reserved}</strong><small>Reservadas</small></div><div class="combo-count"><strong>${usage.remaining}</strong><small>Disponibles</small></div></div>${scheduleNote}${combo.notes?`<p class="card-sub" style="margin-top:10px">${esc(combo.notes)}</p>`:''}<div class="combo-card-actions">${patient?`<button class="btn btn-sm" data-action="profile" data-id="${patient.id}">Ficha</button>`:''}${!payment?`<button class="btn btn-sm btn-success" data-action="pay-combo" data-id="${combo.id}">Cobrar pack</button>`:''}<button class="btn btn-sm" data-action="edit-combo" data-id="${combo.id}">Editar</button><button class="btn btn-sm btn-danger" data-action="delete-combo" data-id="${combo.id}">Eliminar</button></div></article>`}
+function renderComboCard(combo){
+ const patient=getPatient(combo.patientId);
+ const usage=comboUsage(combo);
+ const status=comboComputedStatus(combo);
+ const payment=getPaymentByCombo(combo.id);
+ const days=daysUntil(combo.endDate);
+ const displayName=patient?.nombre||combo.patientName||'Sin paciente';
+ const initials=String(displayName||'SP').trim().split(/\s+/).slice(0,2).map(part=>part.charAt(0)).join('').toUpperCase()||'SP';
+ const expiry=status==='Vigente'&&days>=0&&days<=7?`<span class="badge b-warn">Vence en ${Math.max(0,days)} día${days===1?'':'s'}</span>`:'';
+ const schedule=comboScheduleInfo(combo);
+ const scheduleNote=schedule&&usage.remaining>0?`<div class="combo-schedule-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>Próxima sesión sugerida: <strong>${fmtDate(schedule.nextDate)}</strong>${schedule.withinValidity?'':'. Fuera de la vigencia actual.'}</span></div>`:'';
+ const userIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
+ const moneyIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M16 8.5c-.9-.8-2.1-1.2-3.5-1.2-1.9 0-3.2.9-3.2 2.3 0 1.5 1.2 2.1 3.4 2.5 2.1.4 3.1 1 3.1 2.5 0 1.5-1.4 2.5-3.4 2.5-1.6 0-3-.5-4-1.5M12 5.5v13"/></svg>';
+ const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>';
+ const deleteIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 10v7M14 10v7"/></svg>';
+ return`<article class="combo-card finance-pack-card"><div class="combo-card-head"><div class="combo-card-identity"><span class="combo-avatar">${esc(initials)}</span><div><div class="combo-card-title">${esc(combo.name||'Pack sin nombre')}</div><div class="combo-card-patient">${esc(displayName)}</div></div></div>${statusBadge(status)}</div><div class="combo-meta">${combo.serviceType?`<span class="combo-meta-chip is-service">${esc(combo.serviceType)}</span>`:''}${combo.frequencyLabel?`<span class="combo-meta-chip">${esc(combo.frequencyLabel)}</span>`:''}<span class="combo-meta-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}</span></span><span class="combo-meta-chip ${payment?.status==='Cobrado'?'is-paid':'is-unpaid'}">${esc(payment?.status||'Sin cobrar')} · ${money(combo.price)}</span>${expiry}</div><div class="combo-usage-head"><span>Ocupación del pack</span><strong>${usage.assigned}/${usage.total}</strong></div><div class="combo-progress"><span style="width:${usage.pct}%"></span></div><div class="combo-counts"><div class="combo-count"><strong>${usage.used}</strong><small>Usadas</small></div><div class="combo-count"><strong>${usage.reserved}</strong><small>Reservadas</small></div><div class="combo-count"><strong>${usage.remaining}</strong><small>Disponibles</small></div></div>${scheduleNote}${combo.notes?`<p class="combo-card-note">${esc(combo.notes)}</p>`:''}<div class="combo-card-actions">${patient?`<button type="button" class="btn combo-profile-btn" data-action="profile" data-id="${esc(patient.id)}">${userIcon}<span>Ficha</span></button>`:''}${!payment?`<button type="button" class="btn combo-pay-btn" data-action="pay-combo" data-id="${esc(combo.id)}">${moneyIcon}<span>Cobrar</span></button>`:''}<button type="button" class="btn combo-edit-btn" data-action="edit-combo" data-id="${esc(combo.id)}">${editIcon}<span>Editar</span></button><button type="button" class="btn combo-delete-btn" data-action="delete-combo" data-id="${esc(combo.id)}">${deleteIcon}<span>Eliminar</span></button></div></article>`
+}
 function openComboForm(id='',patientId='',promoId=''){const existing=id?getCombo(id):null,selectedPromo=getPromo(promoId||existing?.promoId||''),startDate=existing?.startDate||todayISO(),base=selectedPromo&&selectedPromo.kind==='package'?{patientId,name:selectedPromo.name,promoId:selectedPromo.id,serviceType:selectedPromo.service,frequencyLabel:selectedPromo.frequency,intervalDays:selectedPromo.intervalDays,sameMonth:selectedPromo.sameMonth,totalSessions:selectedPromo.sessions,price:selectedPromo.price,startDate,endDate:monthEndISO(startDate),notes:'Usable dentro del mismo mes.'}:{patientId,name:'Pack personalizado',totalSessions:4,price:0,startDate,endDate:addDaysISO(startDate,30),notes:''},combo=normalizePackage(existing||base);openModal(existing?'Editar pack':'Nuevo pack',`<form id="comboForm" class="form-grid"><input type="hidden" name="id" value="${esc(existing?.id||'')}"><div class="field full"><label>Paciente *</label><select class="select" name="patientId" required><option value="">Seleccionar</option>${data.patients.map(patient=>`<option value="${patient.id}" ${patient.id===combo.patientId?'selected':''}>${esc(patient.nombre)}</option>`).join('')}</select></div><div class="field full"><label>Promoción predefinida</label><select class="select" name="promoId" id="comboPromoSelect"><option value="">Pack personalizado</option>${packagePromos().map(promo=>`<option value="${promo.id}" ${promo.id===combo.promoId?'selected':''}>${esc(promo.name)} · ${money(promo.price)}</option>`).join('')}</select></div><div class="field full"><label>Nombre del pack *</label><input class="input" name="name" id="comboName" required value="${esc(combo.name)}" placeholder="Ej. Espalda y cuello · Pack mensual"></div><div class="field"><label>Cantidad de sesiones *</label><input class="input" name="totalSessions" id="comboSessions" type="number" min="1" step="1" required value="${combo.totalSessions}"></div><div class="field"><label>Precio total *</label><input class="input" name="price" id="comboPrice" type="number" min="0" step="1" required value="${Number(combo.price||0)||''}" placeholder="Ej. 125000"></div><div class="field"><label>Inicio de vigencia *</label><input class="input" name="startDate" id="comboStartDate" type="date" required value="${combo.startDate}"></div><div class="field"><label>Fin de vigencia *</label><input class="input" name="endDate" id="comboEndDate" type="date" required value="${combo.endDate}"></div><div class="field full"><label>Observaciones</label><textarea class="textarea" name="notes" id="comboNotes" placeholder="Frecuencia, condiciones o aclaraciones">${esc(combo.notes||'')}</textarea></div><div class="field full"><div class="billing-note" id="comboPromoHelp">${combo.frequencyLabel?`${esc(combo.frequencyLabel)}. Usable de ${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}.`:'Los turnos asignados dentro de la vigencia ocuparán sesiones del pack. Los cancelados no consumen cupo.'}</div></div></form>`,`<button class="btn" data-action="close-modal">Cancelar</button><button class="btn btn-primary" data-action="save-combo">Guardar pack</button>`,'wide');const promoSelect=$('#comboPromoSelect'),name=$('#comboName'),sessions=$('#comboSessions'),price=$('#comboPrice'),start=$('#comboStartDate'),end=$('#comboEndDate'),notes=$('#comboNotes'),help=$('#comboPromoHelp');const applyPromo=()=>{const promo=getPromo(promoSelect.value);if(!promo||promo.kind!=='package'){help.textContent='Pack personalizado: definí cantidad, precio y vigencia.';return}name.value=promo.name;sessions.value=promo.sessions;price.value=promo.price;end.value=promo.sameMonth?monthEndISO(start.value):addDaysISO(start.value,30);notes.value='Usable dentro del mismo mes.';help.innerHTML=`<strong>${esc(promo.frequency)}</strong>. Vigencia hasta el último día del mes de inicio: ${fmtDate(end.value)}.`};promoSelect.addEventListener('change',applyPromo);start.addEventListener('change',()=>{const promo=getPromo(promoSelect.value);end.value=promo?.sameMonth?monthEndISO(start.value):addDaysISO(start.value,30);if(promo)help.innerHTML=`<strong>${esc(promo.frequency)}</strong>. Vigencia hasta el último día del mes de inicio: ${fmtDate(end.value)}.`});if(selectedPromo&&!existing)applyPromo()}
 function saveCombo(){const form=$('#comboForm');if(!form.reportValidity())return;const values=Object.fromEntries(new FormData(form)),existing=values.id?getCombo(values.id):null,patient=getPatient(values.patientId),promo=getPromo(values.promoId),totalSessions=Math.max(1,Number(values.totalSessions||1)),sameMonth=promo?.kind==='package'&&promo.sameMonth===true,endDate=sameMonth?monthEndISO(values.startDate):values.endDate;if(!patient)return toast('Seleccioná un paciente','error');if(endDate<values.startDate)return toast('La fecha de finalización debe ser posterior al inicio','error');if(existing&&comboUsage(existing).assigned>totalSessions)return toast('La cantidad no puede ser menor a las sesiones ya asignadas','error');const combo=normalizePackage({...existing,id:existing?.id||uid('combo'),patientId:patient.id,patientName:patient.nombre,name:values.name,promoId:promo?.kind==='package'?promo.id:'',serviceType:promo?.kind==='package'?promo.service:existing?.serviceType||'',frequencyLabel:promo?.kind==='package'?promo.frequency:existing?.frequencyLabel||'',intervalDays:promo?.kind==='package'?promo.intervalDays:existing?.intervalDays||0,sameMonth,totalSessions,price:Number(values.price||0),startDate:values.startDate,endDate,notes:values.notes});upsertEntity('packages',combo);closeModal();renderPagos();toast(existing?'Pack actualizado':'Pack creado')}
 function deleteCombo(id){const combo=getCombo(id);if(!combo)return;const usage=comboUsage(combo),payment=getPaymentByCombo(id);if(usage.assigned)return toast('No se puede eliminar: el pack tiene turnos asignados','error');if(payment)return toast('No se puede eliminar: el pack tiene un pago vinculado. Eliminá primero el pago','error');openConfirm('Eliminar pack','Se eliminará la vigencia y la cantidad de sesiones configuradas.',async()=>{await removeEntity('packages',id);closeConfirm();renderPagos();toast('Combo eliminado','info')})}
@@ -2805,10 +3794,6 @@ function handleConfirmAction(){
 function handleModalOverlay(){if($('#confirmModal')?.classList.contains('open'))closeConfirm();else closeModal()}
 function handleContextOutsideClick(event){const current=event.target.closest('details.context');$$('details.context[open]').forEach(detail=>{if(detail!==current)detail.removeAttribute('open')})}
 function handleAfterPrint(){setElementHtml($('#printArea'),'')}
-function handleOnline(){setSync('syncing','Reconectando','Enviando cambios pendientes');initFirebase().then(()=>scheduleCloudWrite(50)).catch(error=>{console.error('Reconnect failed',error);scheduleRetry()})}
-function handleOffline(){setSync('offline','Sin conexión','Cambios guardados localmente')}
-function handleBeforeUnload(){clearTimeout(syncWriteTimer);clearTimeout(syncRetryTimer);if(timerInterval)clearInterval(timerInterval);if(leaderHeartbeat)clearInterval(leaderHeartbeat);const leader=readLeader();if(leader?.tabId===TAB_ID)localStorage.removeItem(SYNC_LEADER_KEY)}
-function startLeaderHeartbeat(){if(leaderHeartbeat)clearInterval(leaderHeartbeat);refreshSyncLeadership();leaderHeartbeat=setInterval(refreshSyncLeadership,3000)}
 function attachListeners(){
  if(listenersAttached)return;
  listenersAttached=true;
@@ -2820,9 +3805,6 @@ function attachListeners(){
  document.addEventListener('focusout',handleDeferredFocusout,true);
  document.addEventListener('keydown',handleEscapeKey);
  window.addEventListener('afterprint',handleAfterPrint);
- window.addEventListener('online',handleOnline);
- window.addEventListener('offline',handleOffline);
- window.addEventListener('beforeunload',handleBeforeUnload);
  $('#confirmActionButton')?.addEventListener('click',handleConfirmAction);
  $('#modalOverlay')?.addEventListener('click',handleModalOverlay);
  $('#menuBtn')?.addEventListener('click',openMenu);
@@ -2856,7 +3838,7 @@ function ensureRuntimeStyles(){
 }
 function renderAll(){renderCurrentView({preserveState:true});updateNotifications()}
 function updateNotifications(){const count=data.activeSessions.filter(s=>Date.now()-new Date(s.updatedAt||s.startedAt).getTime()>ABANDONED_SESSION_MS).length;$('#notificationDot').style.display=count?'block':'none';$('#notificationButton').title=count?`${count} sesión(es) posiblemente abandonada(s)`:'Sin alertas'}
-async function init(){if(appInitialized)return;appInitialized=true;ensureRuntimeStyles();navInit();renderCurrentView({preserveState:false});updateNotifications();startTimerLoop();startLeaderHeartbeat();attachListeners();await initFirebase()}
+async function init(){if(appInitialized)return;appInitialized=true;ensureRuntimeStyles();navInit();renderCurrentView({preserveState:false});updateNotifications();startTimerLoop();attachListeners();await initFirebase()}
 init().catch(error=>{console.error('ETER init failed',error);toast('La aplicación inició en modo local','warn')});
 </script>
 </body>
