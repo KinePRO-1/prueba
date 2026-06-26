@@ -6,7 +6,8 @@
 <title>ETER KinePro | Panel clínico</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 <style>
 /* ─── TOKENS ─────────────────────────────────────── */
 :root{
@@ -792,6 +793,19 @@ input[type=range]{width:100%;accent-color:var(--blue);height:6px}
   .patient-filter-controls{grid-template-columns:1fr}
   .patient-filter-controls .input{grid-column:auto}
   .patient-expanded-actions{grid-template-columns:1fr}
+}
+
+/* ─── PERFORMANCE / RENDERING ────────────────────── */
+/* Los bloques fuera del viewport no se pintan hasta ser necesarios. */
+.patient-card,.routine-card,.session-card,.history-session-card,.metric,.clinical-block{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 180px;
+}
+.patient-card{contain-intrinsic-size:auto 110px}
+.patient-card[open]{contain-intrinsic-size:auto 620px}
+.view:not(.active){content-visibility:hidden}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────── */
@@ -3127,9 +3141,19 @@ body.modal-open{overflow:hidden}
 #view-inicio .turn-status-btn,
 #view-turnos .turn-status-btn{
   width:100%;
-  justify-content:center;
+  height:42px;
+  min-height:42px;
+  display:grid;
+  grid-template-columns:18px minmax(0,1fr) 15px;
+  align-items:center;
+  justify-items:center;
+  gap:8px;
+  padding:0 12px;
+  line-height:1;
+  overflow:hidden;
   box-shadow:none;
   list-style:none;
+  cursor:pointer;
 }
 #view-inicio .turn-status-btn::-webkit-details-marker,
 #view-turnos .turn-status-btn::-webkit-details-marker,
@@ -3145,8 +3169,12 @@ body.modal-open{overflow:hidden}
 #view-turnos .turn-status-btn.is-cancelado{color:var(--red);background:var(--red-50);border-color:var(--red-100)}
 #view-inicio .turn-status-btn:hover,
 #view-turnos .turn-status-btn:hover{filter:brightness(.97);transform:translateY(-1px)}
+#view-inicio .turn-status-btn .agenda-action-icon,
+#view-turnos .turn-status-btn .agenda-action-icon{width:18px;height:18px;display:grid;place-items:center;flex:none}
+#view-inicio .turn-status-label,
+#view-turnos .turn-status-label{display:block;width:100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
 #view-inicio .turn-status-chevron,
-#view-turnos .turn-status-chevron{width:15px;height:15px;display:grid;place-items:center;margin-left:auto;transition:transform var(--transition)}
+#view-turnos .turn-status-chevron{width:15px;height:15px;display:grid;place-items:center;margin-left:0;transition:transform var(--transition)}
 #view-inicio .turn-status-context[open] .turn-status-chevron,
 #view-turnos .turn-status-context[open] .turn-status-chevron{transform:rotate(180deg)}
 #view-inicio .turn-status-menu,
@@ -3543,6 +3571,41 @@ body.modal-open{overflow:hidden}
   #view-rutinas .history-more-btn{width:40px;height:100%;min-height:44px}
 }
 
+
+/* ─── REDISEÑO PROFESIONAL: TARJETAS DE PACIENTES ─── */
+.patient-list{gap:18px}
+.patient-card{border:1px solid #d6e2f1;border-radius:22px;box-shadow:0 10px 30px rgba(31,65,112,.07);background:#fff}
+.patient-card:hover{transform:translateY(-1px);border-color:#bfd1e8;box-shadow:0 16px 40px rgba(31,65,112,.11)}
+.patient-card[open]{border-color:#bed2ec;box-shadow:0 18px 46px rgba(31,65,112,.12)}
+.patient-card-summary{min-height:132px;padding:26px 36px;grid-template-columns:82px minmax(0,1fr) 56px;gap:24px}
+.patient-card-summary::before{display:none}
+.patient-avatar-icon{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;color:#246bd6;background:linear-gradient(145deg,#f8fbff,#edf4ff);border:1px solid #d7e4f5;box-shadow:inset 0 0 0 7px #fff,0 5px 16px rgba(36,107,214,.08)}
+.patient-avatar-icon svg{width:31px;height:31px}
+.patient-name{text-align:left;font-size:clamp(1.7rem,2.2vw,2.35rem);font-weight:800;letter-spacing:-.75px;color:#101b2e}
+.patient-chevron{width:52px;height:52px;border-radius:15px;background:#f8fbff;border-color:#d7e3f1}
+.patient-card[open] .patient-chevron{transform:none;background:#eef5ff}
+.patient-summary{padding:0;background:linear-gradient(180deg,#fff 0%,#fcfdff 100%);border-top:1px solid #dce6f2}
+.patient-details-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:18px 36px 0}
+.patient-detail{display:grid;grid-template-columns:66px minmax(0,1fr);align-items:center;gap:16px;min-height:124px;padding:24px 24px 24px 0;border-bottom:1px solid #e5ecf4}
+.patient-detail:nth-child(even):not(.full){padding-left:30px;border-left:1px solid #dfe7f0}
+.patient-detail.full{grid-column:1/-1}
+.patient-info-icon{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#2368c9;background:#edf4ff;border:1px solid #d9e6f7;flex-shrink:0}
+.patient-status-detail .patient-info-icon{color:#0a7a5c;background:#e7f7f1;border-color:#c8e9de}
+.patient-info-icon svg{width:25px;height:25px}
+.patient-detail-label{margin:0 0 5px;color:#7386a2;font-size:13px;font-weight:700;letter-spacing:0;text-transform:none}
+.patient-detail-value{font-size:17px;color:#101b2e;line-height:1.4}
+.patient-detail-value .badge{height:30px;padding:0 14px;font-size:14px}
+.patient-metrics-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:0;border-bottom:0}
+.patient-metric{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:14px;min-height:126px;padding:24px 22px;border-right:1px solid #dfe7f0}
+.patient-metric:first-child{padding-left:0}.patient-metric:last-child{border-right:0}
+.patient-number{font-size:22px;font-weight:700}
+.patient-expanded-actions{margin:0;padding:22px 36px 26px;border-top:1px solid #dfe7f0;gap:12px;background:#fff}
+.patient-expanded-actions .btn{min-height:52px;padding:0 20px;border-radius:12px;font-size:15px;font-weight:700;gap:9px}
+.patient-expanded-actions .btn-primary{min-width:174px;background:linear-gradient(135deg,#2674eb,#175dcc);box-shadow:0 7px 18px rgba(27,95,204,.22)}
+.patient-expanded-actions .btn-danger{background:#fff7f7;border-color:#f0b9b9}
+@media(max-width:980px){.patient-metrics-row{grid-template-columns:repeat(2,1fr)}.patient-metric:nth-child(2){border-right:0}.patient-metric:nth-child(-n+2){border-bottom:1px solid #e5ecf4}}
+@media(max-width:780px){.patient-card-summary{min-height:94px;padding:16px;grid-template-columns:52px minmax(0,1fr) 38px;gap:12px}.patient-avatar-icon{width:48px;height:48px;box-shadow:inset 0 0 0 4px #fff}.patient-avatar-icon svg{width:23px;height:23px}.patient-name{text-align:left;font-size:1.35rem}.patient-chevron{width:36px;height:36px}.patient-details-grid{grid-template-columns:1fr;padding:8px 16px 0}.patient-detail,.patient-detail:nth-child(even):not(.full){grid-template-columns:48px minmax(0,1fr);min-height:90px;padding:16px 0;border-left:0}.patient-info-icon{width:42px;height:42px}.patient-info-icon svg{width:20px;height:20px}.patient-detail-label{font-size:11.5px}.patient-detail-value{font-size:15px}.patient-metrics-row{grid-template-columns:1fr 1fr}.patient-metric{grid-template-columns:42px minmax(0,1fr);min-height:96px;padding:15px 10px}.patient-metric:first-child{padding-left:0}.patient-expanded-actions{padding:16px;grid-template-columns:1fr 1fr}.patient-expanded-actions .btn{min-height:46px;font-size:13px;padding:0 10px}.patient-expanded-actions .btn-primary{min-width:0}}
+@media(max-width:430px){.patient-metrics-row{grid-template-columns:1fr}.patient-metric{border-right:0;border-bottom:1px solid #e5ecf4}.patient-metric:last-child{border-bottom:0}.patient-expanded-actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -3776,8 +3839,8 @@ function turnItemHtml(turn,{home=false}={}){
   ?`<button type="button" class="btn agenda-action-btn agenda-pay-btn" data-action="pay-turn" data-id="${esc(turn.id)}"><span class="agenda-action-icon" aria-hidden="true">${icon('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M17 14h.01M9 14h6"/>')}</span><span>Cobrar</span></button>`
   :'';
  const statusOptions=['Pendiente','Confirmado','Finalizado','Cancelado'].map(option=>`<button type="button" class="turn-status-option ${option===status?'is-current':''}" data-action="set-turn-status" data-id="${esc(turn.id)}" data-status="${option}" ${option===status?'disabled':''}><span class="turn-status-option-icon" aria-hidden="true">${option==='Finalizado'?icon('<path d="m5 12 4 4L19 6"/>'):option==='Cancelado'?icon('<path d="M6 6l12 12M18 6 6 18"/>'):option==='Confirmado'?icon('<circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.2 2.2 4.8-5"/>'):icon('<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/>')}</span><span>${option}</span>${option===status?'<span class="turn-current-mark">Actual</span>':''}</button>`).join('');
- const statusAction=`<details class="context turn-status-context"><summary class="btn agenda-action-btn turn-status-btn ${statusTone}" aria-label="Cambiar estado del turno: ${esc(status)}" aria-haspopup="menu"><span class="agenda-action-icon" aria-hidden="true">${icon(status==='Finalizado'?'<path d="m5 12 4 4L19 6"/>':status==='Cancelado'?'<path d="M6 6l12 12M18 6 6 18"/>':status==='Confirmado'?'<circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.2 2.2 4.8-5"/>':'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/>')}</span><span>${esc(status)}</span><span class="turn-status-chevron" aria-hidden="true">${icon('<path d="m7 10 5 5 5-5"/>')}</span></summary><div class="context-menu turn-status-menu" role="menu"><span class="turn-menu-title">Cambiar estado</span>${statusOptions}</div></details>`;
- const moreAction=`<details class="context turn-more-context"><summary class="turn-more-btn" aria-label="Más acciones del turno" title="Más acciones" aria-haspopup="menu">${icon('<circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>')}</summary><div class="context-menu turn-more-menu" role="menu"><button type="button" data-action="edit-turn" data-id="${esc(turn.id)}"><span aria-hidden="true">${icon('<path d="m4 20 4.2-1 10.6-10.6a2 2 0 0 0-2.8-2.8L5.4 16.2 4 20Z"/><path d="m14.8 6.8 2.4 2.4"/>')}</span><span>Editar turno</span></button><button type="button" class="danger" data-action="delete-turn" data-id="${esc(turn.id)}"><span aria-hidden="true">${icon('<path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/>')}</span><span>Eliminar turno</span></button></div></details>`;
+ const statusAction=`<details class="context turn-status-context"><summary class="btn agenda-action-btn turn-status-btn ${statusTone}" aria-label="Cambiar estado del turno: ${esc(status)}" aria-haspopup="menu" aria-expanded="false"><span class="agenda-action-icon" aria-hidden="true">${icon(status==='Finalizado'?'<path d="m5 12 4 4L19 6"/>':status==='Cancelado'?'<path d="M6 6l12 12M18 6 6 18"/>':status==='Confirmado'?'<circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.2 2.2 4.8-5"/>':'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/>')}</span><span class="turn-status-label">${esc(status)}</span><span class="turn-status-chevron" aria-hidden="true">${icon('<path d="m7 10 5 5 5-5"/>')}</span></summary><div class="context-menu turn-status-menu" role="menu"><span class="turn-menu-title">Cambiar estado</span>${statusOptions}</div></details>`;
+ const moreAction=`<details class="context turn-more-context"><summary class="turn-more-btn" aria-label="Más acciones del turno" title="Más acciones" aria-haspopup="menu" aria-expanded="false">${icon('<circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>')}</summary><div class="context-menu turn-more-menu" role="menu"><button type="button" data-action="edit-turn" data-id="${esc(turn.id)}"><span aria-hidden="true">${icon('<path d="m4 20 4.2-1 10.6-10.6a2 2 0 0 0-2.8-2.8L5.4 16.2 4 20Z"/><path d="m14.8 6.8 2.4 2.4"/>')}</span><span>Editar turno</span></button><button type="button" class="danger" data-action="delete-turn" data-id="${esc(turn.id)}"><span aria-hidden="true">${icon('<path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/>')}</span><span>Eliminar turno</span></button></div></details>`;
  return`<article class="agenda-turn-card turn-agenda-card${home?' is-home-turn':''}"><div class="agenda-time-panel"><span class="agenda-clock-icon" aria-hidden="true">${icon('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>')}</span><strong class="agenda-time">${esc(turn.hora)}</strong></div><div class="agenda-turn-main"><div class="agenda-patient-name">${esc(name)}</div><div class="agenda-turn-reason">${esc(turn.motivo||'Turno clínico')}</div><div class="agenda-clinical-badges"><span class="badge b-gray">ETER</span>${patient?statusBadge(patient.estadoClinico):'<span class="badge b-warn">Paciente sin ficha clínica</span>'}${combo?`<span class="badge b-blue">${esc(combo.name)}</span>`:''}</div>${finance}</div><div class="agenda-turn-actions"><div class="agenda-action-group">${statusAction}${payAction}${patientAction}${moreAction}</div></div></article>`
 }
 function mergeImportedPatient(existing,seed,targetId,stamp){
@@ -4185,7 +4248,7 @@ function patientTreatmentType(patient){
  const promo=lastTurn?getPromo(lastTurn.rateId):null;
  return promo?.service||'Sin tipo de tratamiento'
 }
-function patientCardHtml(p,stats,treatment){const id=esc(p.id);return`<details class="patient-card" data-patient-card-id="${id}" ${ui.expandedPatientIds.has(p.id)?'open':''}><summary class="patient-card-summary"><span class="patient-name">${esc(p.nombre)}</span><span class="patient-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="patient-summary"><div class="patient-details-grid"><div class="patient-detail"><span class="patient-detail-label">Estado</span><div class="patient-detail-value">${statusBadge(p.estadoClinico)}</div></div><div class="patient-detail"><span class="patient-detail-label">Tipo de tratamiento</span><div class="patient-detail-value">${esc(treatment)}</div></div><div class="patient-detail full"><span class="patient-detail-label">Diagnóstico</span><div class="patient-detail-value">${esc(p.diagnostico||'—')}</div></div><div class="patient-detail"><span class="patient-detail-label">Fase</span><div class="patient-detail-value">${esc(p.faseTratamiento||'—')}</div></div><div class="patient-detail"><span class="patient-detail-label">DNI</span><div class="patient-detail-value">${esc(p.dni||'Sin registrar')}</div></div><div class="patient-detail"><span class="patient-detail-label">Rutinas</span><div class="patient-detail-value">${stats.routines.length}</div></div><div class="patient-detail"><span class="patient-detail-label">Sesiones</span><div class="patient-detail-value">${stats.history.length}</div></div><div class="patient-detail"><span class="patient-detail-label">Última sesión</span><div class="patient-detail-value">${stats.last?fmtDate(stats.last.finishedAt):'—'}</div></div><div class="patient-detail"><span class="patient-detail-label">Sesión activa</span><div class="patient-detail-value">${stats.active?'<span class="badge b-warn">En curso</span>':'—'}</div></div></div><div class="patient-expanded-actions"><button type="button" class="btn btn-primary" data-action="profile" data-id="${id}" data-patient-id="${id}">Ver ficha</button><button type="button" class="btn" data-action="new-routine" data-id="${id}" data-patient-id="${id}">Crear rutina</button><button type="button" class="btn" data-action="start-patient-session" data-id="${id}" data-patient-id="${id}">Iniciar sesión</button><button type="button" class="btn" data-action="edit-patient" data-id="${id}" data-patient-id="${id}">Editar</button><button type="button" class="btn btn-danger" data-action="delete-patient" data-id="${id}" data-patient-id="${id}">Eliminar</button></div></div></details>`}
+function patientCardHtml(p,stats,treatment){const id=esc(p.id),icon=(path)=>`<span class="patient-info-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${path}</svg></span>`;return`<details class="patient-card" data-patient-card-id="${id}" ${ui.expandedPatientIds.has(p.id)?'open':''}><summary class="patient-card-summary"><span class="patient-avatar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></span><span class="patient-name">${esc(p.nombre)}</span><span class="patient-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></span></summary><div class="patient-summary"><div class="patient-details-grid"><div class="patient-detail patient-status-detail">${icon('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>')}<div><span class="patient-detail-label">Estado</span><div class="patient-detail-value">${statusBadge(p.estadoClinico)}</div></div></div><div class="patient-detail">${icon('<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 9h6M9 13h6"/>')}<div><span class="patient-detail-label">Tipo de tratamiento</span><div class="patient-detail-value">${esc(treatment)}</div></div></div><div class="patient-detail full">${icon('<path d="M6 3v5a6 6 0 0 0 12 0V3M6 3H4M18 3h2M12 14v7M9 21h6"/>')}<div><span class="patient-detail-label">Diagnóstico</span><div class="patient-detail-value">${esc(p.diagnostico||'—')}</div></div></div><div class="patient-detail">${icon('<path d="M5 21V4m0 0h10l-2 4 2 4H5"/>')}<div><span class="patient-detail-label">Fase</span><div class="patient-detail-value">${esc(p.faseTratamiento||'—')}</div></div></div><div class="patient-detail">${icon('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8" cy="11" r="2"/><path d="M5.5 16c.7-1.8 4.3-1.8 5 0M13 10h5M13 14h5"/>')}<div><span class="patient-detail-label">DNI</span><div class="patient-detail-value">${esc(p.dni||'Sin registrar')}</div></div></div><div class="patient-metrics-row"><div class="patient-metric">${icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01"/>')}<div><span class="patient-detail-label">Rutinas</span><div class="patient-detail-value patient-number">${stats.routines.length}</div></div></div><div class="patient-metric">${icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>')}<div><span class="patient-detail-label">Sesiones</span><div class="patient-detail-value patient-number">${stats.history.length}</div></div></div><div class="patient-metric">${icon('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>')}<div><span class="patient-detail-label">Última sesión</span><div class="patient-detail-value">${stats.last?fmtDate(stats.last.finishedAt):'—'}</div></div></div><div class="patient-metric">${icon('<circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4Z"/>')}<div><span class="patient-detail-label">Sesión activa</span><div class="patient-detail-value">${stats.active?'<span class="badge b-warn">En curso</span>':'—'}</div></div></div></div></div><div class="patient-expanded-actions"><button type="button" class="btn btn-primary" data-action="profile" data-id="${id}" data-patient-id="${id}"><span aria-hidden="true">▣</span> Ver ficha</button><button type="button" class="btn" data-action="new-routine" data-id="${id}" data-patient-id="${id}"><span aria-hidden="true">＋</span> Crear rutina</button><button type="button" class="btn" data-action="start-patient-session" data-id="${id}" data-patient-id="${id}"><span aria-hidden="true">▷</span> Iniciar sesión</button><button type="button" class="btn" data-action="edit-patient" data-id="${id}" data-patient-id="${id}"><span aria-hidden="true">✎</span> Editar</button><button type="button" class="btn btn-danger" data-action="delete-patient" data-id="${id}" data-patient-id="${id}"><span aria-hidden="true">♲</span> Eliminar</button></div></div></details>`}
 function patientCardSignature(p,stats,treatment){return JSON.stringify([p.nombre,p.estadoClinico,treatment,p.diagnostico,p.faseTratamiento,p.dni,stats.routines.length,stats.history.length,stats.last?.finishedAt||'',Boolean(stats.active)])}
 function patchPatientCards(container,items){const existing=new Map($$('.patient-card',container).map(card=>[card.dataset.patientCardId,card])),fragment=document.createDocumentFragment();for(const {patient,stats,treatment,signature} of items){let card=existing.get(patient.id);if(!card||card.dataset.renderSignature!==signature){const replacement=htmlToElement(patientCardHtml(patient,stats,treatment));replacement.dataset.renderSignature=signature;if(card?.open)replacement.open=true;card=replacement}else card.open=ui.expandedPatientIds.has(patient.id);fragment.appendChild(card);existing.delete(patient.id)}for(const stale of existing.values())stale.remove();container.replaceChildren(fragment)}
 function ensurePatientsLayout(treatmentTypes,stateFilter,treatmentFilter,sortMode){const view=$('#view-pacientes');if(view.querySelector('[data-patients-layout]'))return;setElementHtml(view,`<div data-patients-layout><div class="page-header"><div class="page-header-left"><h2>Pacientes</h2><p id="patientsHeaderCount"></p></div><div id="patientsTabs">${patientTabsHtml()}</div></div><div class="patient-filter-bar"><div class="patient-filter-controls"><input class="input" id="patientSearch" type="search" value="${esc(ui.patientSearch)}" placeholder="Buscar paciente" aria-label="Buscar pacientes"><select class="select" id="patientStateFilter" aria-label="Filtrar por estado"><option>Todos</option>${['Activo','En seguimiento','Alta parcial','Alta médica'].map(x=>`<option ${x===stateFilter?'selected':''}>${x}</option>`).join('')}</select><select class="select" id="patientTreatmentFilter" aria-label="Filtrar por tipo de tratamiento"><option value="Todos">Todos los tratamientos</option>${treatmentTypes.map(x=>`<option value="${esc(x)}" ${x===treatmentFilter?'selected':''}>${esc(x)}</option>`).join('')}</select><select class="select" id="patientSort" aria-label="Ordenar pacientes"><option value="az" ${sortMode==='az'?'selected':''}>Nombre A-Z</option><option value="za" ${sortMode==='za'?'selected':''}>Nombre Z-A</option><option value="treatment" ${sortMode==='treatment'?'selected':''}>Tipo de tratamiento</option></select></div><button class="btn btn-primary" data-action="open-anamnesis">+ Nueva anamnesis</button></div><div class="patient-count" id="patientVisibleCount"></div><div class="patient-list" id="patientList" style="margin-top:10px"></div></div>`)}
@@ -4998,7 +5061,7 @@ async function handleAppClick(e){const target=e.target.closest('[data-action],[d
  else if(a==='turn-period'){const period=target.dataset.period;if(!['day','week','month'].includes(period))return;ui.turnFilters.period=period;renderTurnos()}else if(a==='new-turn')openTurnForm('',patientId?{patientId}:{});else if(a==='set-turn-status')setTurnStatus(id,target.dataset.status);else if(a==='new-turn-promo'){const promo=getPromo(promoId);openTurnForm('',promo?{patientId:patientId||'',rateId:promo.id,motivo:promo.service,price:promo.price}:{})}else if(a==='edit-turn')openTurnForm(id);else if(a==='save-turn')saveTurn();else if(a==='delete-turn')deleteTurn(id);else if(a==='create-patient-from-turn'){const turn=getTurnById(id);if(turn)startAnamnesis('',{nombre:turn.paciente||''})}else if(a==='pay-turn')openPaymentForm({turnId:id});else if(a==='payment-tab'){const tab=target.dataset.tab;if(!['movements','packs'].includes(tab))return;ui.paymentTab=tab;renderPagos()}else if(a==='new-payment')openPaymentForm({patientId:patientId||''});else if(a==='edit-payment')openPaymentForm({paymentId:id});else if(a==='save-payment')savePayment();else if(a==='delete-payment')deletePayment(id);else if(a==='new-combo')openComboForm('',patientId||'');else if(a==='new-combo-promo')openComboForm('',patientId||'',promoId||'');else if(a==='edit-combo')openComboForm(id);else if(a==='save-combo')saveCombo();else if(a==='delete-combo')deleteCombo(id);else if(a==='pay-combo')openPaymentForm({comboId:id});else if(a==='export-csv')exportCsv();else if(a==='save-settings')saveSettings();else if(a==='force-sync'){Object.values(ENTITY_COLLECTIONS).forEach(cfg=>(data[cfg.key]||[]).forEach(item=>item._dirty=true));scheduleCloudWrite(20)}else if(a==='reset-payment-filters'){ui.paymentFilters={period:'all',method:'all',from:'',to:''};renderPagos();toast('Filtros de ingresos restablecidos','info')}else if(a){console.warn('Unhandled action',{action:a,id});toast('Esta acción no está disponible','warn')}
  if(target.closest('details.context'))queueMicrotask(()=>target.closest('details.context')?.removeAttribute('open'))
 }
-function handlePatientDetailsToggle(event){const card=event.target;if(!(card instanceof HTMLDetailsElement)||!card.classList.contains('patient-card'))return;const id=card.dataset.patientCardId;if(!id)return;if(card.open)ui.expandedPatientIds.add(id);else ui.expandedPatientIds.delete(id)}
+function handlePatientDetailsToggle(event){const card=event.target;if(!(card instanceof HTMLDetailsElement))return;if(card.classList.contains('context')){const summary=card.querySelector(':scope > summary');if(summary)summary.setAttribute('aria-expanded',String(card.open));return}if(!card.classList.contains('patient-card'))return;const id=card.dataset.patientCardId;if(!id)return;if(card.open)ui.expandedPatientIds.add(id);else ui.expandedPatientIds.delete(id)}
 function handleAppInput(e){const el=e.target;if(ui.view==='pacientes'&&ui.patientTab==='anamnesis')syncAnamnesisDraftField(el);if(el.dataset.executionField)updateExecutionField(el.dataset.sessionId,el.dataset.exerciseId,el.dataset.executionField,el.value);if(el.id==='patientSearch'){ui.patientSearch=el.value;debounce('patient-search',()=>renderPacientes(),180)}if(el.dataset.historyFilter){const key=el.dataset.historyFilter;if(!['patientQuery','routineQuery','date'].includes(key))return;ui.historyFilters[key]=el.value;debounce('history-filter',()=>{if(ui.view==='rutinas'&&ui.routineTab==='history')renderHistory()},180)}}
 function handleAppChange(e){
  const el=e.target;
@@ -5091,6 +5154,9 @@ function ensureRuntimeStyles(){
   .payment-filter-panel .card-head{align-items:center}
   .payment-filter-panel .field{min-width:0}
   details.context[open]{z-index:130!important}
+  #view-inicio .turn-status-btn,#view-turnos .turn-status-btn{height:42px!important;min-height:42px!important;display:grid!important;grid-template-columns:18px minmax(0,1fr) 15px!important;align-items:center!important;justify-items:center!important;gap:8px!important;padding:0 12px!important;line-height:1!important;overflow:hidden!important}
+  #view-inicio .turn-status-label,#view-turnos .turn-status-label{display:block!important;width:100%!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;text-align:center!important}
+  #view-inicio .turn-status-chevron,#view-turnos .turn-status-chevron{margin-left:0!important}
   @media(max-width:780px){
    .payment-filter-grid{grid-template-columns:1fr 1fr}
    .payment-filter-grid .field:first-child{grid-column:1/-1}
@@ -5107,7 +5173,63 @@ function ensureRuntimeStyles(){
 }
 function renderAll(){renderCurrentView({preserveState:true});updateNotifications()}
 function updateNotifications(){const count=data.activeSessions.filter(s=>Date.now()-new Date(s.updatedAt||s.startedAt).getTime()>ABANDONED_SESSION_MS).length;$('#notificationDot').style.display=count?'block':'none';$('#notificationButton').title=count?`${count} sesión(es) posiblemente abandonada(s)`:'Sin alertas'}
-async function init(){if(appInitialized)return;appInitialized=true;ensureRuntimeStyles();restoreSidebarPreference();navInit();renderCurrentView({preserveState:false});updateNotifications();startTimerLoop();attachListeners();await initFirebase()}
+function runWhenIdle(task,timeout=1400){
+ if('requestIdleCallback' in window)return window.requestIdleCallback(()=>task(),{timeout});
+ return window.setTimeout(task,Math.min(timeout,350))
+}
+function initFirebaseDeferred(){
+ runWhenIdle(()=>{
+  initFirebase().catch(error=>{
+   console.error('ETER Firebase deferred init failed',error);
+   toast('La aplicación continúa en modo local','warn')
+  })
+ },1200)
+}
+function installPerformanceAuditLoop(){
+ const report={longTasks:0,slowFrames:0,lastAudit:0};
+ if('PerformanceObserver' in window){
+  try{
+   const observer=new PerformanceObserver(list=>{
+    for(const entry of list.getEntries())if(entry.duration>=50)report.longTasks++
+   });
+   observer.observe({type:'longtask',buffered:true})
+  }catch(_){ }
+ }
+ let last=performance.now(),frames=0;
+ const sample=now=>{
+  const delta=now-last;last=now;frames++;
+  if(delta>48)report.slowFrames++;
+  if(frames<180&&!document.hidden)requestAnimationFrame(sample)
+ };
+ requestAnimationFrame(sample);
+ runWhenIdle(()=>{
+  report.lastAudit=Date.now();
+  window.ETER_PERFORMANCE_AUDIT={...report,domNodes:document.getElementsByTagName('*').length,patients:(data.patients||[]).length};
+  console.info('[ETER] Auditoría de rendimiento',window.ETER_PERFORMANCE_AUDIT)
+ },2600)
+}
+function handleVisibilityPerformance(){
+ if(document.hidden){
+  if(timerInterval){clearInterval(timerInterval);timerInterval=null}
+ }else{
+  startTimerLoop();
+  updateNotifications()
+ }
+}
+async function init(){
+ if(appInitialized)return;
+ appInitialized=true;
+ ensureRuntimeStyles();
+ restoreSidebarPreference();
+ navInit();
+ renderCurrentView({preserveState:false});
+ updateNotifications();
+ startTimerLoop();
+ attachListeners();
+ document.addEventListener('visibilitychange',handleVisibilityPerformance,{passive:true});
+ installPerformanceAuditLoop();
+ initFirebaseDeferred()
+}
 init().catch(error=>{console.error('ETER init failed',error);toast('La aplicación inició en modo local','warn')});
 </script>
 </body>
