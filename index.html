@@ -431,6 +431,13 @@ body.sidebar-collapsed .sf-info,body.sidebar-collapsed .sf-dot{display:none}
 .followup-alert-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:var(--amber-50);color:var(--amber);border:1px solid var(--amber-100)}
 .followup-alert-icon svg{width:22px;height:22px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .followup-alert-main{min-width:0}.followup-alert-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.followup-alert-head strong{font-size:14px;color:var(--text)}
+.followup-priority-badge{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;border:1px solid transparent;font-size:10px;font-weight:800;white-space:nowrap}
+.followup-priority-badge.soon{background:var(--blue-50);color:var(--blue);border-color:var(--blue-100)}
+.followup-priority-badge.contact{background:var(--amber-50);color:var(--amber);border-color:var(--amber-100)}
+.followup-priority-badge.review{background:var(--red-50);color:var(--red);border-color:var(--red-100)}
+.followup-alert-card.followup-contact{border-color:var(--amber-100);background:#fffdfa}
+.followup-alert-card.followup-review{border-color:var(--red-100);background:#fffafa}
+.followup-alert-card.followup-review .followup-alert-icon{background:var(--red-50);color:var(--red);border-color:var(--red-100)}
 .followup-alert-main p{margin-top:4px;color:var(--text-2);font-size:12.5px;line-height:1.45}.followup-alert-main small{display:block;margin-top:5px;color:var(--muted);font-size:10.5px}
 .followup-alert-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
 .session-alert-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
@@ -4274,22 +4281,29 @@ function medianNumber(values=[]){const ordered=values.map(Number).filter(Number.
 function patientAttendanceLabel(turn){if(!turn)return'Sin turnos finalizados';const days=Math.max(0,daysBetweenISO(turn.fecha,todayISO()));return`${fmtDate(turn.fecha)}${days===0?' · Hoy':days===1?' · Hace 1 día':` · Hace ${days} días`}`}
 function reactivationCandidates(){
  reconcileLocalTurnPatientLinks();
- const today=todayISO();
+ const today=todayISO(),windowStart=addDaysISO(today,-180);
  return data.patients.filter(patient=>['Activo','Activo parcial'].includes(normalizePatientClinicalStatus(patient.estadoClinico))).map(patient=>{
-  const completed=patientCompletedTurns(patient.id).slice().sort((a,b)=>`${a.fecha} ${a.hora||''}`.localeCompare(`${b.fecha} ${b.hora||''}`));
+  const clinicalStatus=normalizePatientClinicalStatus(patient.estadoClinico);
+  const completed=patientCompletedTurns(patient.id).filter(turn=>turn.fecha>=windowStart&&turn.fecha<=today).sort((a,b)=>`${a.fecha} ${a.hora||''}`.localeCompare(`${b.fecha} ${b.hora||''}`));
   if(completed.length<3)return null;
   const recent=completed.slice(-6),intervals=[];
-  for(let index=1;index<recent.length;index++){const days=daysBetweenISO(recent[index-1].fecha,recent[index].fecha);if(days>=1&&days<=45)intervals.push(days)}
+  for(let index=1;index<recent.length;index++){
+   const days=daysBetweenISO(recent[index-1].fecha,recent[index].fecha);
+   if(days>=1&&days<=60)intervals.push(days)
+  }
   if(intervals.length<2)return null;
   const usualInterval=Math.max(1,Math.round(medianNumber(intervals)));
-  if(usualInterval>31)return null;
   const lastTurn=recent[recent.length-1],daysSince=Math.max(0,daysBetweenISO(lastTurn.fecha,today));
-  const multiplier=patient.estadoClinico==='Activo parcial'?2.1:1.8;
-  const reminderAfter=Math.min(45,Math.max(14,Math.round(usualInterval*multiplier)));
+  const multiplier=clinicalStatus==='Activo parcial'?1.75:1.5;
+  const reminderAfter=Math.max(2,Math.ceil(usualInterval*multiplier));
   const hasFutureTurn=data.turns.some(turn=>turn.patientId===patient.id&&turn.estado!=='Cancelado'&&turn.fecha>=today);
-  if(hasFutureTurn||daysSince<=reminderAfter||daysSince>90)return null;
-  return{patient,lastTurn,daysSince,usualInterval,completedCount:completed.length,reminderAfter,delay:daysSince-reminderAfter}
- }).filter(Boolean).sort((a,b)=>b.delay-a.delay||b.daysSince-a.daysSince)
+  if(hasFutureTurn||daysSince<reminderAfter||daysSince>90)return null;
+  const delayRatio=daysSince/usualInterval;
+  const level=daysSince>=60?'review':delayRatio>=2?'contact':'soon';
+  const levelLabel=level==='review'?'Revisar estado':level==='contact'?'Conviene contactar':'Seguimiento próximo';
+  const levelRank=level==='review'?3:level==='contact'?2:1;
+  return{patient,lastTurn,daysSince,usualInterval,completedCount:completed.length,reminderAfter,delay:daysSince-reminderAfter,delayRatio,level,levelLabel,levelRank}
+ }).filter(Boolean).sort((a,b)=>b.levelRank-a.levelRank||b.delayRatio-a.delayRatio||b.daysSince-a.daysSince)
 }
 function patientStats(patientId){const routines=getPatientRoutines(patientId),history=getPatientHistory(patientId),active=getActiveSessionForPatient(patientId),completedTurns=patientCompletedTurns(patientId),lastTurn=completedTurns[0]||null;return{routines,history,active,last:history[0]||null,completedTurns,lastTurn,compliance:Math.round(avg(history.map(h=>h.progress||0))),duration:Math.round(avg(history.map(h=>h.duration||0))),volume:history.reduce((sum,h)=>sum+Number(h.volume||0),0)}}
 function patientTabsHtml(){return`<div class="routine-tabs" aria-label="Secciones de pacientes"><button class="routine-tab ${ui.patientTab==='list'?'active':''}" data-action="patient-tab" data-tab="list">Listado</button><button class="routine-tab ${ui.patientTab==='anamnesis'?'active':''}" data-action="patient-tab" data-tab="anamnesis">Nueva anamnesis</button></div>`}
@@ -5264,9 +5278,9 @@ function abandonedSessionAlerts(){return data.activeSessions.filter(session=>Dat
 function cadenceLabel(days){if(days<=8)return'semanal';if(days<=17)return'cada dos semanas';if(days<=24)return'cada tres semanas';return`cada ${days} días`}
 function openNotificationCenter(){
  const followUps=reactivationCandidates(),abandoned=abandonedSessionAlerts();
- const followUpHtml=followUps.length?followUps.map(({patient,lastTurn,daysSince,usualInterval,completedCount})=>`<article class="followup-alert-card"><div class="followup-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 11a8 8 0 1 1-2.3-5.7"/><path d="M20 4v7h-7"/><path d="M12 8v4l3 2"/></svg></div><div class="followup-alert-main"><div class="followup-alert-head"><strong>${esc(patient.nombre)}</strong>${statusBadge(patient.estadoClinico)}</div><p>Último masaje: <strong>${fmtDate(lastTurn.fecha)}</strong>. Lleva <strong>${daysSince} días</strong> sin asistir y su frecuencia habitual era ${esc(cadenceLabel(usualInterval))}.</p><small>${completedCount} turnos finalizados registrados${patient.telefono?` · Tel. ${esc(patient.telefono)}`:' · Teléfono no registrado'}</small></div><div class="followup-alert-actions"><button type="button" class="btn" data-action="profile" data-id="${esc(patient.id)}" data-patient-id="${esc(patient.id)}">Ver ficha</button><button type="button" class="btn btn-primary" data-action="new-turn" data-patient-id="${esc(patient.id)}">Agendar turno</button></div></article>`).join(''):'<div class="notification-empty"><strong>Sin seguimientos pendientes</strong><p>No se detectaron pacientes activos que hayan interrumpido una frecuencia regular.</p></div>';
+ const followUpHtml=followUps.length?followUps.map(({patient,lastTurn,daysSince,usualInterval,completedCount,reminderAfter,level,levelLabel})=>`<article class="followup-alert-card followup-${level}"><div class="followup-alert-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 11a8 8 0 1 1-2.3-5.7"/><path d="M20 4v7h-7"/><path d="M12 8v4l3 2"/></svg></div><div class="followup-alert-main"><div class="followup-alert-head"><strong>${esc(patient.nombre)}</strong>${statusBadge(patient.estadoClinico)}<span class="followup-priority-badge ${level}">${levelLabel}</span></div><p>Último masaje: <strong>${fmtDate(lastTurn.fecha)}</strong>. Lleva <strong>${daysSince} días</strong> sin asistir y su frecuencia habitual era ${esc(cadenceLabel(usualInterval))}. El aviso se activa desde los ${reminderAfter} días.</p><small>${completedCount} turnos finalizados en los últimos 180 días${patient.telefono?` · Tel. ${esc(patient.telefono)}`:' · Teléfono no registrado'}</small></div><div class="followup-alert-actions"><button type="button" class="btn" data-action="profile" data-id="${esc(patient.id)}" data-patient-id="${esc(patient.id)}">Ver ficha</button><button type="button" class="btn btn-primary" data-action="new-turn" data-patient-id="${esc(patient.id)}">Agendar turno</button></div></article>`).join(''):'<div class="notification-empty"><strong>Sin seguimientos pendientes</strong><p>No se detectaron pacientes activos que hayan superado su intervalo habitual sin tener un turno futuro.</p></div>';
  const abandonedHtml=abandoned.length?abandoned.map(session=>{const inactiveMinutes=Math.max(1,Math.floor((Date.now()-new Date(session.updatedAt||session.startedAt).getTime())/60000));return`<article class="session-alert-row"><div><strong>${esc(livePatientName(session))}</strong><span>${esc(session.routineName||'Sesión sin nombre')} · Sin actividad hace ${inactiveMinutes} min</span></div><button type="button" class="btn btn-sm" data-action="review-session-alerts">Revisar</button></article>`}).join(''):'<div class="notification-empty compact"><p>No hay sesiones detenidas o abandonadas.</p></div>';
- openModal('Notificaciones y seguimiento',`<div class="notification-center"><section class="notification-section"><div class="notification-section-head"><div><h3>Pacientes para contactar</h3><p>Solo incluye pacientes Activos o Activos parciales con al menos 3 asistencias, una frecuencia reconocible, sin un turno futuro y con una interrupción de hasta 90 días.</p></div><span class="notification-count">${followUps.length}</span></div><div class="followup-alert-list">${followUpHtml}</div></section><section class="notification-section"><div class="notification-section-head"><div><h3>Sesiones sin actividad</h3><p>Sesiones iniciadas que requieren revisión.</p></div><span class="notification-count neutral">${abandoned.length}</span></div><div class="session-alert-list">${abandonedHtml}</div></section></div>`,`<button class="btn" data-action="close-modal">Cerrar</button>`,'wide')
+ openModal('Notificaciones y seguimiento',`<div class="notification-center"><section class="notification-section"><div class="notification-section-head"><div><h3>Pacientes para contactar</h3><p>Analiza pacientes Activos y Activos parciales con al menos 3 masajes finalizados en los últimos 180 días. Avisa al superar el intervalo habitual un 50% en Activos o un 75% en Activos parciales, siempre que no exista un turno futuro. Entre 60 y 90 días indica revisar el estado; después de 90 días deja de aparecer.</p></div><span class="notification-count">${followUps.length}</span></div><div class="followup-alert-list">${followUpHtml}</div></section><section class="notification-section"><div class="notification-section-head"><div><h3>Sesiones sin actividad</h3><p>Sesiones iniciadas que requieren revisión.</p></div><span class="notification-count neutral">${abandoned.length}</span></div><div class="session-alert-list">${abandonedHtml}</div></section></div>`,`<button class="btn" data-action="close-modal">Cerrar</button>`,'wide')
 }
 function updateNotifications(){const followUps=reactivationCandidates(),abandoned=abandonedSessionAlerts(),count=followUps.length+abandoned.length,dot=$('#notificationDot'),button=$('#notificationButton');if(dot){dot.style.display=count?'flex':'none';dot.textContent=count>99?'99+':String(count)}if(button){const parts=[];if(followUps.length)parts.push(`${followUps.length} paciente(s) para contactar`);if(abandoned.length)parts.push(`${abandoned.length} sesión(es) sin actividad`);button.title=parts.length?parts.join(' · '):'Sin alertas';button.setAttribute('aria-label',parts.length?`Notificaciones: ${parts.join(', ')}`:'Notificaciones: sin alertas')}}
 function runWhenIdle(task,timeout=1400){
