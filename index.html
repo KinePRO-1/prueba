@@ -2394,6 +2394,42 @@ body.modal-open{overflow:hidden}
   border-color:var(--red-100);
 }
 #view-pagos .combo-delete-btn:hover{background:#f9d8d8;border-color:var(--red)}
+#view-pagos .combo-pack-details{padding:0;overflow:hidden}
+#view-pagos .combo-pack-summary{list-style:none;padding:17px;cursor:pointer;user-select:none}
+#view-pagos .combo-pack-summary::-webkit-details-marker{display:none}
+#view-pagos .combo-pack-summary-side{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#view-pagos .combo-pack-chevron{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--border);border-radius:9px;color:var(--blue);background:var(--surface-2);transition:transform .2s ease}
+#view-pagos .combo-pack-chevron svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#view-pagos .combo-pack-details[open] .combo-pack-chevron{transform:rotate(180deg)}
+#view-pagos .combo-pack-body{padding:0 17px 17px;border-top:1px solid var(--border)}
+#view-pagos .combo-pack-collapsed-stats{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:11px;color:var(--muted);font-size:11.5px;font-weight:650}
+#view-pagos .combo-pack-details[open] .combo-pack-collapsed-stats{display:none}
+#view-pagos .combo-pack-details.is-archived{background:#f8fafc;border-color:#dfe5ed;box-shadow:0 4px 14px rgba(31,65,112,.045)}
+#view-pagos .combo-pack-details.is-archived:not([open]){opacity:.86}
+#view-pagos .combo-pack-details.is-archived .combo-avatar{background:linear-gradient(145deg,#77869a,#9aa6b5);box-shadow:none}
+#view-pagos .combo-meta-chip.is-finished{color:#526173;background:#eef1f5;border-color:#d8dee7}
+#view-pagos .combo-card-actions{grid-template-columns:repeat(auto-fit,minmax(105px,1fr))}
+#view-pagos .combo-finish-btn{color:#7a5510;background:#fff7df;border-color:#ead18d}
+#view-pagos .combo-finish-btn:hover{background:#f9ebbf;border-color:#d5b45b}
+#view-pagos .combo-reopen-btn{color:var(--green);background:var(--green-50);border-color:var(--green-100)}
+#view-pagos .combo-reopen-btn:hover{background:#d4eee6;border-color:var(--green)}
+.combo-pack-details{padding:0;overflow:hidden}
+.combo-pack-summary{list-style:none;padding:17px;cursor:pointer;user-select:none}
+.combo-pack-summary::-webkit-details-marker{display:none}
+.combo-pack-summary-side{display:flex;align-items:center;gap:8px}
+.combo-pack-chevron{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--border);border-radius:9px;color:var(--blue);background:var(--surface-2);transition:transform .2s ease}
+.combo-pack-chevron svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:2}
+.combo-pack-details[open] .combo-pack-chevron{transform:rotate(180deg)}
+.combo-pack-body{padding:0 17px 17px;border-top:1px solid var(--border)}
+.combo-pack-collapsed-stats{display:flex;justify-content:space-between;gap:10px;margin-top:10px;color:var(--muted);font-size:11.5px}
+.combo-pack-details[open] .combo-pack-collapsed-stats{display:none}
+.combo-pack-details.is-archived{background:#f8fafc;border-color:#dfe5ed;box-shadow:0 4px 14px rgba(31,65,112,.045)}
+.combo-pack-details.is-archived:not([open]){opacity:.86}
+.combo-pack-details.is-archived .combo-avatar{background:linear-gradient(145deg,#77869a,#9aa6b5);box-shadow:none}
+.combo-meta-chip.is-finished{color:#526173;background:#eef1f5;border-color:#d8dee7}
+.combo-finish-btn{color:#7a5510;background:#fff7df;border-color:#ead18d}
+.combo-reopen-btn{color:var(--green);background:var(--green-50);border-color:var(--green-100)}
+
 #view-pagos .payment-movements-list{
   display:grid;
   gap:10px;
@@ -3634,6 +3670,296 @@ body.modal-open{overflow:hidden}
 @media(max-width:980px){.patient-metrics-row{grid-template-columns:repeat(2,1fr)}.patient-metric:nth-child(2){border-right:0}.patient-metric:nth-child(-n+2){border-bottom:1px solid #e5ecf4}}
 @media(max-width:780px){.patient-card-summary{min-height:94px;padding:16px;grid-template-columns:52px minmax(0,1fr) 38px;gap:12px}.patient-avatar-icon{width:48px;height:48px;box-shadow:inset 0 0 0 4px #fff}.patient-avatar-icon svg{width:23px;height:23px}.patient-name{text-align:left;font-size:1.35rem}.patient-chevron{width:36px;height:36px}.patient-details-grid{grid-template-columns:1fr;padding:8px 16px 0}.patient-detail,.patient-detail:nth-child(even):not(.full){grid-template-columns:48px minmax(0,1fr);min-height:90px;padding:16px 0;border-left:0}.patient-info-icon{width:42px;height:42px}.patient-info-icon svg{width:20px;height:20px}.patient-detail-label{font-size:11.5px}.patient-detail-value{font-size:15px}.patient-metrics-row{grid-template-columns:1fr 1fr}.patient-metric{grid-template-columns:42px minmax(0,1fr);min-height:96px;padding:15px 10px}.patient-metric:first-child{padding-left:0}.patient-expanded-actions{padding:16px;grid-template-columns:1fr 1fr}.patient-expanded-actions .btn{min-height:46px;font-size:13px;padding:0 10px}.patient-expanded-actions .btn-primary{min-width:0}}
 @media(max-width:430px){.patient-metrics-row{grid-template-columns:1fr}.patient-metric{border-right:0;border-bottom:1px solid #e5ecf4}.patient-metric:last-child{border-bottom:0}.patient-expanded-actions{grid-template-columns:1fr}}
+
+
+/* ─── AGENDA SEMANAL EN GRILLA ───────────────────── */
+#view-turnos .turns-results.is-week-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:start;
+  gap:16px;
+}
+#view-turnos .turn-day-group.is-week-day{
+  height:100%;
+  min-width:0;
+  overflow:visible;
+  padding:16px;
+  border-color:#d7e2f0;
+  background:linear-gradient(180deg,#fff 0%,#fbfdff 100%);
+  box-shadow:0 7px 22px rgba(31,65,112,.07),0 1px 3px rgba(31,65,112,.05);
+}
+#view-turnos .turn-day-group.is-week-day:hover{
+  border-color:#c9d8ec;
+  box-shadow:0 11px 28px rgba(31,65,112,.10),0 2px 5px rgba(31,65,112,.05);
+}
+#view-turnos .turn-day-group.is-week-day .turn-day-head{
+  margin-bottom:11px;
+  padding-bottom:10px;
+}
+#view-turnos .turn-day-group.is-week-day .turn-day-kicker{
+  font-size:10.5px;
+  letter-spacing:.65px;
+}
+#view-turnos .turn-day-group.is-week-day .turn-day-head h3{
+  margin-top:3px;
+  font-size:18px;
+  letter-spacing:-.25px;
+}
+#view-turnos .turn-day-group.is-week-day .turn-day-count{
+  min-height:29px;
+  padding:0 11px;
+  background:#f4f8ff;
+}
+#view-turnos .week-turn-list{
+  display:grid;
+  gap:8px;
+}
+#view-turnos .week-turn-item{
+  position:relative;
+  min-width:0;
+  overflow:visible;
+  border:1px solid #d8e3f1;
+  border-radius:11px;
+  background:#fff;
+  box-shadow:0 2px 7px rgba(31,65,112,.045);
+  transition:border-color var(--transition),box-shadow var(--transition),transform var(--transition);
+}
+#view-turnos .week-turn-item:hover{
+  border-color:#bdd0ea;
+  box-shadow:0 6px 16px rgba(31,65,112,.08);
+  transform:translateY(-1px);
+}
+#view-turnos .week-turn-item::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  border-radius:11px 0 0 11px;
+  background:linear-gradient(180deg,var(--blue),var(--blue-mid));
+}
+#view-turnos .week-turn-summary{
+  min-width:0;
+  display:grid;
+  grid-template-columns:66px minmax(0,1fr) 32px;
+  align-items:center;
+  gap:10px;
+  padding:10px 9px 10px 13px;
+}
+#view-turnos .week-turn-time{
+  min-height:46px;
+  display:grid;
+  place-items:center;
+  padding:0 7px;
+  border-right:1px solid #dce7f5;
+  color:var(--blue);
+  font-size:18px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:-.35px;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+#view-turnos .week-turn-copy{
+  min-width:0;
+}
+#view-turnos .week-turn-copy strong{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:var(--text);
+  font-size:13.5px;
+  line-height:1.25;
+  font-weight:800;
+}
+#view-turnos .week-turn-copy>span{
+  display:block;
+  margin-top:2px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  color:var(--muted);
+  font-size:10.5px;
+  line-height:1.35;
+}
+#view-turnos .week-turn-meta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:4px;
+  margin-top:6px;
+}
+#view-turnos .week-turn-meta .badge{
+  height:19px;
+  padding:0 6px;
+  font-size:9px;
+}
+#view-turnos .week-turn-menu-context{
+  position:relative;
+  align-self:start;
+  z-index:2;
+}
+#view-turnos .week-turn-menu-context[open]{z-index:500}
+#view-turnos .week-turn-menu-btn{
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  list-style:none;
+  cursor:pointer;
+  border:1px solid var(--border);
+  border-radius:9px;
+  color:var(--text-2);
+  background:#fff;
+  transition:background var(--transition),border-color var(--transition),color var(--transition),transform var(--transition);
+}
+#view-turnos .week-turn-menu-btn::-webkit-details-marker{display:none}
+#view-turnos .week-turn-menu-btn:hover{
+  color:var(--blue);
+  background:var(--blue-50);
+  border-color:var(--blue-100);
+  transform:translateY(-1px);
+}
+#view-turnos .week-turn-menu-btn svg{
+  width:17px;
+  height:17px;
+  display:block;
+}
+#view-turnos .week-turn-menu{
+  top:39px;
+  right:0;
+  bottom:auto;
+  min-width:238px;
+  max-width:min(280px,calc(100vw - 28px));
+  padding:7px;
+  border-radius:12px;
+  box-shadow:0 16px 38px rgba(18,38,70,.18);
+}
+#view-turnos .week-turn-menu-title{
+  display:block;
+  padding:5px 8px 7px;
+  color:var(--muted);
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.55px;
+  text-transform:uppercase;
+}
+#view-turnos .week-turn-status-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  padding:0 0 6px;
+}
+#view-turnos .week-turn-status-grid button{
+  min-height:34px;
+  justify-content:center;
+  padding:0 7px;
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  font-size:10.5px;
+  font-weight:700;
+}
+#view-turnos .week-turn-status-grid button.is-current{
+  color:var(--blue);
+  border-color:var(--blue-100);
+  background:var(--blue-50);
+}
+#view-turnos .week-turn-menu-divider{
+  height:1px;
+  margin:1px 4px 5px;
+  background:var(--border);
+}
+#view-turnos .week-turn-menu>button{
+  width:100%;
+  min-height:39px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:0 9px;
+  border:0;
+  border-radius:8px;
+  background:transparent;
+  color:var(--text);
+  text-align:left;
+  font-size:12px;
+  font-weight:650;
+}
+#view-turnos .week-turn-menu>button:hover{background:var(--surface-2);color:var(--blue)}
+#view-turnos .week-turn-menu>button.is-pay{color:var(--green)}
+#view-turnos .week-turn-menu>button.danger{color:var(--red)}
+#view-turnos .week-turn-menu>button svg{
+  width:17px;
+  height:17px;
+  flex:0 0 auto;
+}
+#view-turnos .week-day-empty{
+  min-height:112px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:16px 10px;
+  border:1.5px dashed #d7e1ed;
+  border-radius:11px;
+  color:#99a8ba;
+  background:rgba(248,250,252,.68);
+  text-align:center;
+}
+#view-turnos .week-day-empty svg{
+  width:26px;
+  height:26px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#view-turnos .week-day-empty strong{
+  color:#95a3b5;
+  font-size:11.5px;
+  font-weight:650;
+}
+@media(max-width:780px){
+  #view-turnos .turns-results.is-week-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  #view-turnos .turn-day-group.is-week-day{padding:11px;border-radius:13px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-head{align-items:flex-start;gap:6px;margin-bottom:9px;padding-bottom:8px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-head h3{font-size:15px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-count{min-height:24px;padding:0 7px;font-size:9px}
+  #view-turnos .week-turn-list{gap:7px}
+  #view-turnos .week-turn-summary{grid-template-columns:minmax(0,1fr) 30px;gap:5px;padding:9px 8px 9px 11px}
+  #view-turnos .week-turn-time{grid-column:1/2;grid-row:1;min-height:0;display:block;padding:0;border-right:0;font-size:16px;text-align:left}
+  #view-turnos .week-turn-copy{grid-column:1/-1;grid-row:2}
+  #view-turnos .week-turn-copy strong{font-size:11.5px}
+  #view-turnos .week-turn-copy>span{font-size:9.5px}
+  #view-turnos .week-turn-menu-context{grid-column:2/3;grid-row:1;justify-self:end}
+  #view-turnos .week-turn-menu-btn{width:30px;height:30px}
+  #view-turnos .week-turn-meta{margin-top:5px}
+  #view-turnos .week-turn-meta .badge{height:18px;font-size:8px;padding:0 5px}
+  #view-turnos .week-turn-billing{display:none}
+  #view-turnos .week-day-empty{min-height:102px;padding:12px 6px}
+}
+@media(max-width:430px){
+  #view-turnos .turns-results.is-week-grid{gap:8px}
+  #view-turnos .turn-day-group.is-week-day{padding:9px;border-radius:12px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-kicker{font-size:8.8px;letter-spacing:.45px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-head h3{font-size:14px}
+  #view-turnos .turn-day-group.is-week-day .turn-day-count{max-width:54px;min-height:22px;padding:0 5px;font-size:8px;text-align:center;white-space:normal;line-height:1.05}
+  #view-turnos .week-turn-summary{padding:8px 7px 8px 10px}
+  #view-turnos .week-turn-time{font-size:15px}
+  #view-turnos .week-turn-copy strong{font-size:10.8px}
+  #view-turnos .week-turn-copy>span{font-size:9px}
+  #view-turnos .week-turn-meta .badge:not(.week-turn-status){display:none}
+  #view-turnos .week-turn-menu{position:fixed;left:12px;right:12px;top:auto;bottom:18px;min-width:0;max-width:none;max-height:72vh;overflow:auto}
+}
+@media(max-width:350px){
+  #view-turnos .turns-results.is-week-grid{grid-template-columns:1fr}
+  #view-turnos .week-turn-summary{grid-template-columns:58px minmax(0,1fr) 30px}
+  #view-turnos .week-turn-time{grid-column:auto;grid-row:auto;display:grid;min-height:42px;border-right:1px solid #dce7f5;text-align:center}
+  #view-turnos .week-turn-copy{grid-column:auto;grid-row:auto}
+  #view-turnos .week-turn-menu-context{grid-column:auto;grid-row:auto}
+}
+
 </style>
 </head>
 <body>
@@ -3819,7 +4145,7 @@ function toast(message,type='success',action=null){const t=$('#toast');if(!t)ret
 function defaultData(){return{version:DATA_VERSION,patients:[],routines:[],activeSessions:[],history:[],exerciseLibrary:[],turns:[],payments:[],packages:[],pendingDeletes:[],meta:{}}}
 function normalizeTurn(raw={}){const fecha=raw.fecha||raw.date||todayISO(),hora=raw.hora||raw.hour||'',fallback=`${fecha}T${/^\d{2}:\d{2}$/.test(hora)?hora:'12:00'}:00`,createdAt=raw.createdAt||fallback,updatedAt=raw.updatedAt||raw.createdAt||fallback;const turn={...raw,id:String(raw.id||uid('turn')),patientId:raw.patientId||'',paciente:raw.paciente||raw.patientName||'Sin nombre',hora,fecha,motivo:raw.motivo||'Turno clínico',estado:raw.estado||'Pendiente',price:Number(raw.price??raw.precio??0)||0,rateId:raw.rateId||raw.promoId||'',billingType:raw.billingType||(raw.comboId?'combo':'individual'),comboId:raw.comboId||'',createdAt,updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw),_dirty:raw._dirty===true};delete turn.external;return turn}
 function normalizePayment(raw={}){const date=raw.date||todayISO(),fallback=`${date}T12:00:00`,createdAt=raw.createdAt||fallback,updatedAt=raw.updatedAt||raw.createdAt||fallback;const legacyType=raw.type==='Pack / combo'?'Pack / combo':raw.type==='Otro'?'Pago sin turno':raw.type;return{...raw,id:String(raw.id||uid('payment')),patientId:raw.patientId||'',patientName:raw.patientName||'',type:legacyType||(raw.turnId?'Turno':raw.comboId?'Pack / combo':'Pago sin turno'),turnId:raw.turnId||'',comboId:raw.comboId||'',amount:Number(raw.amount??raw.monto??0)||0,date,method:raw.method||'Efectivo',status:raw.status||'Cobrado',notes:raw.notes||'',createdAt,updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw),_dirty:raw._dirty===true}}
-function normalizePackage(raw={}){const startDate=raw.startDate||raw.fechaInicio||todayISO(),fallback=`${startDate}T12:00:00`,createdAt=raw.createdAt||fallback,updatedAt=raw.updatedAt||raw.createdAt||fallback,promo=getPromo(raw.promoId||'');return{...raw,id:String(raw.id||uid('combo')),patientId:raw.patientId||'',patientName:raw.patientName||'',name:raw.name||raw.nombre||'Pack personalizado',promoId:raw.promoId||'',serviceType:raw.serviceType||promo?.service||'',frequencyLabel:raw.frequencyLabel||promo?.frequency||'',intervalDays:Number(raw.intervalDays??promo?.intervalDays??0)||0,sameMonth:raw.sameMonth===true||promo?.sameMonth===true,totalSessions:Math.max(1,Number(raw.totalSessions??raw.sesiones??promo?.sessions??4)||4),price:Number(raw.price??raw.precio??promo?.price??0)||0,startDate,endDate:raw.endDate||raw.fechaFin||(raw.sameMonth||promo?.sameMonth?monthEndISO(startDate):addDaysISO(startDate,30)),notes:raw.notes||'',createdAt,updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw),_dirty:raw._dirty===true}}
+function normalizePackage(raw={}){const startDate=raw.startDate||raw.fechaInicio||todayISO(),fallback=`${startDate}T12:00:00`,createdAt=raw.createdAt||fallback,updatedAt=raw.updatedAt||raw.createdAt||fallback,promo=getPromo(raw.promoId||''),status=raw.status==='Finalizado'||raw.finished===true?'Finalizado':'Activo';return{...raw,id:String(raw.id||uid('combo')),patientId:raw.patientId||'',patientName:raw.patientName||'',name:raw.name||raw.nombre||'Pack personalizado',promoId:raw.promoId||'',serviceType:raw.serviceType||promo?.service||'',frequencyLabel:raw.frequencyLabel||promo?.frequency||'',intervalDays:Number(raw.intervalDays??promo?.intervalDays??0)||0,sameMonth:raw.sameMonth===true||promo?.sameMonth===true,totalSessions:Math.max(1,Number(raw.totalSessions??raw.sesiones??promo?.sessions??4)||4),price:Number(raw.price??raw.precio??promo?.price??0)||0,startDate,endDate:raw.endDate||raw.fechaFin||(raw.sameMonth||promo?.sameMonth?monthEndISO(startDate):addDaysISO(startDate,30)),status,finishedAt:status==='Finalizado'?(raw.finishedAt||raw.endedAt||updatedAt):'',notes:raw.notes||'',createdAt,updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw),_dirty:raw._dirty===true}}
 function normalizeActiveSession(raw={}){const startedAt=raw.startedAt||raw.createdAt||nowIso(),updatedAt=raw.updatedAt||startedAt,executionSource=Array.isArray(raw.executionData)?raw.executionData:(Array.isArray(raw.exercises)?raw.exercises:[]);return{...raw,id:String(raw.id||uid('session')),patientId:raw.patientId||'',patientName:raw.patientName||raw.paciente||'',routineId:raw.routineId||'',routineName:raw.routineName||raw.name||raw.nombre||'Rutina sin nombre',startedAt,createdAt:raw.createdAt||startedAt,executionData:executionSource.map((exercise,index)=>normalizeExercise(exercise,index)),paused:Boolean(raw.paused),pausedAt:raw.pausedAt||raw.pauseStartedAt||'',pausedMs:Number(raw.pausedMs||0),status:raw.status||'Activa',updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw)||Date.now(),_dirty:raw._dirty===true}}
 function normalizeHistoryRecord(raw={}){const finishedAt=raw.finishedAt||raw.updatedAt||raw.createdAt||nowIso(),startedAt=raw.startedAt||raw.createdAt||finishedAt,updatedAt=raw.updatedAt||finishedAt,executionSource=Array.isArray(raw.executionData)?raw.executionData:(Array.isArray(raw.exercises)?raw.exercises:[]);return{...raw,id:String(raw.id||uid('history')),patientId:raw.patientId||'',patientName:raw.patientName||raw.paciente||'',routineId:raw.routineId||'',routineName:raw.routineName||raw.name||raw.nombre||'Rutina sin nombre',startedAt,finishedAt,createdAt:raw.createdAt||finishedAt,executionData:executionSource.map((exercise,index)=>normalizeExercise(exercise,index)),completedCount:Number(raw.completedCount||0),totalCount:Number(raw.totalCount??executionSource.length)||0,progress:Number(raw.progress||0),duration:Number(raw.duration||0),volume:Number(raw.volume||0),status:raw.status||'Incompleta',updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw)||Date.now(),_dirty:raw._dirty===true}}
 function normalizeExerciseLibraryItem(raw={},index=0){const updatedAt=raw.updatedAt||raw.createdAt||nowIso();return{...raw,...normalizeExercise(raw,index),custom:raw.custom!==false,createdAt:raw.createdAt||updatedAt,updatedAt,_updatedAtMs:Number(raw._updatedAtMs)||new Date(updatedAt).getTime()||entityRevision(raw)||Date.now(),_dirty:raw._dirty===true}}
@@ -3845,15 +4171,16 @@ function money(value){return `$${Number(value||0).toLocaleString('es-AR')}`}
 function addDaysISO(value,days){const date=new Date(`${value||todayISO()}T12:00:00`);date.setDate(date.getDate()+Number(days||0));return date.toLocaleDateString('en-CA')}
 function monthEndISO(value){const parts=String(value||todayISO()).split('-').map(Number),year=parts[0],month=parts[1];if(!year||!month)return addDaysISO(value,30);return new Date(year,month,0,12).toLocaleDateString('en-CA')}
 function daysBetweenISO(a,b){const start=new Date(`${a}T12:00:00`).getTime(),end=new Date(`${b}T12:00:00`).getTime();return Math.round((end-start)/86400000)}
+function addDurationISO(value,amount,unit='days'){const date=new Date(`${value||todayISO()}T12:00:00`),qty=Math.max(1,Number(amount||1));if(unit==='months'){const day=date.getDate();date.setDate(1);date.setMonth(date.getMonth()+qty);const lastDay=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();date.setDate(Math.min(day,lastDay))}else date.setDate(date.getDate()+qty*(unit==='weeks'?7:1));return date.toLocaleDateString('en-CA')}
 function daysUntil(value){const end=new Date(`${value}T12:00:00`).getTime(),start=new Date(`${todayISO()}T12:00:00`).getTime();return Math.ceil((end-start)/86400000)}
 function getPaymentByTurn(turnId){return data.payments.find(payment=>payment.turnId===turnId)||null}
 function getPaymentByCombo(comboId){return data.payments.find(payment=>payment.comboId===comboId)||null}
 function getCombo(id){return data.packages.find(combo=>combo.id===id)||null}
-function getPatientCombos(patientId){return data.packages.filter(combo=>combo.patientId===patientId).sort((a,b)=>String(b.startDate).localeCompare(String(a.startDate)))}
+function getPatientCombos(patientId){const rank=combo=>['Vigente','Programado'].includes(comboComputedStatus(combo))?0:1;return data.packages.filter(combo=>combo.patientId===patientId).sort((a,b)=>rank(a)-rank(b)||String(b.startDate).localeCompare(String(a.startDate)))}
 function comboUsage(combo,excludeTurnId=''){const related=data.turns.filter(turn=>turn.comboId===combo.id&&turn.id!==excludeTurnId),turns=related.filter(turn=>turn.estado!=='Cancelado'),cancelled=related.filter(turn=>turn.estado==='Cancelado');const used=turns.filter(turn=>turn.estado==='Finalizado').length,reserved=turns.length-used,assigned=turns.length,total=Number(combo.totalSessions||0);return{turns,cancelled,used,reserved,assigned,remaining:Math.max(0,total-assigned),total,pct:total?Math.min(100,Math.round(assigned/total*100)):0}}
-function comboComputedStatus(combo,at=todayISO()){const usage=comboUsage(combo);if(at<combo.startDate)return'Programado';if(at>combo.endDate)return'Vencido';if(usage.assigned>=usage.total)return'Completo';return'Vigente'}
+function comboComputedStatus(combo,at=todayISO()){if(combo?.status==='Finalizado')return'Finalizado';const usage=comboUsage(combo);if(at<combo.startDate)return'Programado';if(at>combo.endDate)return'Vencido';if(usage.assigned>=usage.total)return'Completo';return'Vigente'}
 function comboScheduleInfo(combo){const interval=Number(combo.intervalDays||0),turns=comboUsage(combo).turns.slice().sort((a,b)=>`${a.fecha} ${a.hora}`.localeCompare(`${b.fecha} ${b.hora}`));if(!interval)return null;const last=turns[turns.length-1]||null,nextDate=last?addDaysISO(last.fecha,interval):combo.startDate;return{last,nextDate,withinValidity:nextDate<=combo.endDate,interval}}
-function activeCombosForPatient(patientId,date=todayISO(),excludeTurnId=''){return getPatientCombos(patientId).filter(combo=>date>=combo.startDate&&date<=combo.endDate&&comboUsage(combo,excludeTurnId).remaining>0)}
+function activeCombosForPatient(patientId,date=todayISO(),excludeTurnId=''){return getPatientCombos(patientId).filter(combo=>comboComputedStatus(combo,date)==='Vigente'&&comboUsage(combo,excludeTurnId).remaining>0)}
 function turnPaymentState(turn){if(turn.comboId){const combo=getCombo(turn.comboId);return combo?{label:'Incluido en combo',className:'b-blue',detail:combo.name}:{label:'Combo no disponible',className:'b-red',detail:''}}const payment=getPaymentByTurn(turn.id);if(payment)return{label:payment.status,className:payment.status==='Cobrado'?'b-ok':'b-warn',detail:money(payment.amount)};return Number(turn.price||0)>0?{label:'Sin cobrar',className:'b-warn',detail:money(turn.price)}:{label:'Sin precio',className:'b-gray',detail:''}}
 function paymentConcept(payment){if(payment.turnId){const turn=getTurnById(payment.turnId);return turn?`Turno ${fmtDate(turn.fecha)} · ${turn.hora}`:'Turno eliminado'}if(payment.comboId){const combo=getCombo(payment.comboId);return combo?.name||'Pack / combo'}return payment.notes||'Pago sin turno'}
 function turnPatientUi(turn){const patient=resolveTurnPatient(turn);return patient?`<button class="btn btn-sm" data-action="profile" data-id="${patient.id}">Ver ficha</button>`:`<button class="btn btn-sm btn-primary" data-action="create-patient-from-turn" data-id="${esc(turn.id)}">+ Crear ficha</button>`}
@@ -4641,15 +4968,35 @@ function deleteHistoryRecord(id){
 function renderExerciseProgressTable(list){const rows=list.flatMap(item=>(item.executionData||[]).filter(exercise=>exercise.completed).map(exercise=>({date:item.finishedAt,patient:livePatientName(item),name:exercise.name,sets:Number(exercise.actualSets||0),reps:Number(exercise.actualReps||0),load:Number(exercise.actualLoad||0)})));return`<div class="table-wrap responsive"><table class="table"><thead><tr><th>Fecha</th><th>Paciente</th><th>Ejercicio</th><th>Series</th><th>Repeticiones</th><th>Carga</th><th>Volumen</th></tr></thead><tbody>${rows.map(row=>`<tr><td><span class="mobile-card-label">Fecha</span>${fmtDate(row.date)}</td><td><span class="mobile-card-label">Paciente</span>${esc(row.patient)}</td><td><span class="mobile-card-label">Ejercicio</span>${esc(row.name)}</td><td><span class="mobile-card-label">Series</span>${row.sets}</td><td><span class="mobile-card-label">Repeticiones</span>${row.reps}</td><td><span class="mobile-card-label">Carga</span>${row.load}</td><td><span class="mobile-card-label">Volumen</span>${Math.round(row.sets*row.reps*row.load)}</td></tr>`).join('')||'<tr><td colspan="7">Sin datos de progreso</td></tr>'}</tbody></table></div>`}
 
 /* TURNOS */
+function weekTurnItemHtml(turn){
+ const patient=resolveTurnPatient(turn),name=patient?.nombre||turn.paciente||'Sin nombre',billing=turnPaymentState(turn),payment=getPaymentByTurn(turn.id),combo=getCombo(turn.comboId),status=turn.estado||'Pendiente';
+ const statusClass=({'Confirmado':'b-ok','Pendiente':'b-warn','Finalizado':'b-gray','Cancelado':'b-red'})[status]||'b-gray';
+ const icon=path=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+ const statusOptions=['Pendiente','Confirmado','Finalizado','Cancelado'].map(option=>`<button type="button" class="${option===status?'is-current':''}" data-action="set-turn-status" data-id="${esc(turn.id)}" data-status="${option}" ${option===status?'disabled':''}>${esc(option)}</button>`).join('');
+ const payAction=!turn.comboId&&!payment&&Number(turn.price)>0?`<button type="button" class="is-pay" data-action="pay-turn" data-id="${esc(turn.id)}">${icon('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h.01M17 14h.01M9 14h6"/>')}<span>Cobrar ${money(turn.price)}</span></button>`:'';
+ const patientAction=patient?`<button type="button" data-action="profile" data-id="${esc(patient.id)}">${icon('<circle cx="12" cy="8" r="3.5"/><path d="M5.5 19c.8-4 3-6 6.5-6s5.7 2 6.5 6"/>')}<span>Ver ficha</span></button>`:`<button type="button" data-action="create-patient-from-turn" data-id="${esc(turn.id)}">${icon('<circle cx="10" cy="8" r="3.5"/><path d="M3.8 19c.7-4 2.8-6 6.2-6 1.5 0 2.8.4 3.8 1.2M18 13v6M15 16h6"/>')}<span>Crear ficha</span></button>`;
+ return`<article class="week-turn-item"><div class="week-turn-summary"><strong class="week-turn-time">${esc(turn.hora||'--:--')}</strong><div class="week-turn-copy"><strong>${esc(name)}</strong><span>${esc(turn.motivo||'Turno clínico')}</span><div class="week-turn-meta"><span class="badge ${statusClass} week-turn-status">${esc(status)}</span><span class="badge ${billing.className} week-turn-billing">${esc(billing.label)}</span>${combo?`<span class="badge b-blue week-turn-billing">${esc(combo.name)}</span>`:''}</div></div><details class="context week-turn-menu-context"><summary class="week-turn-menu-btn" aria-label="Acciones del turno de ${esc(name)}" title="Acciones del turno">${icon('<circle cx="12" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/>')}</summary><div class="context-menu week-turn-menu" role="menu"><span class="week-turn-menu-title">Cambiar estado</span><div class="week-turn-status-grid">${statusOptions}</div><div class="week-turn-menu-divider"></div>${payAction}${patientAction}<button type="button" data-action="edit-turn" data-id="${esc(turn.id)}">${icon('<path d="m4 20 4.2-1 10.6-10.6a2 2 0 0 0-2.8-2.8L5.4 16.2 4 20Z"/><path d="m14.8 6.8 2.4 2.4"/>')}<span>Editar turno</span></button><button type="button" class="danger" data-action="delete-turn" data-id="${esc(turn.id)}">${icon('<path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/>')}<span>Eliminar turno</span></button></div></details></div></article>`
+}
 function renderTurnos(date){
  if(date)ui.turnFilters.anchor=dateOnly(date)||todayISO();
  const selected=ui.turnFilters.anchor||$('#turnosDate')?.value||todayISO(),period=['day','week','month'].includes(ui.turnFilters.period)?ui.turnFilters.period:'day',sortOrder=ui.turnFilters.order==='desc'?'desc':'asc',range=turnRangeForPeriod(selected,period),items=getTurnsForRange(range.from,range.to,sortOrder),grouped=new Map();
  ui.turnFilters.anchor=selected;ui.turnFilters.period=period;ui.turnFilters.order=sortOrder;
  items.forEach(turn=>{if(!grouped.has(turn.fecha))grouped.set(turn.fecha,[]);grouped.get(turn.fecha).push(turn)});
- const groups=[...grouped.entries()].map(([groupDate,turns])=>`<section class="turn-day-group"><header class="turn-day-head"><div><span class="turn-day-kicker">${groupDate===todayISO()?'Hoy':new Intl.DateTimeFormat('es-AR',{weekday:'long'}).format(new Date(`${groupDate}T12:00:00`))}</span><h3>${fmtDate(groupDate)}</h3></div><span class="turn-day-count">${turns.length} turno${turns.length===1?'':'s'}</span></header><div class="list turn-day-list">${turns.map(turn=>turnItemHtml(turn)).join('')}</div></section>`).join('');
  const calendarIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>';
  const plusIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
- setElementHtml($('#view-turnos'),`<div class="turns-page"><div class="page-header turns-page-header"><div class="page-header-left"><h2>Agenda de turnos</h2><p>Consultá los turnos por día, semana o mes</p></div><button type="button" class="btn btn-primary turns-new-btn" data-action="new-turn">${plusIcon}<span>Agendar turno</span></button></div><section class="turns-filter-card"><div class="turns-filter-row"><div class="turn-period-switch" role="group" aria-label="Período de la agenda">${['day','week','month'].map(value=>`<button type="button" class="turn-period-btn${period===value?' active':''}" data-action="turn-period" data-period="${value}" aria-pressed="${period===value}">${turnPeriodLabel(value)}</button>`).join('')}</div><div class="turn-date-sort-controls"><label class="turn-date-control"><span>Fecha de referencia</span><input class="input" id="turnosDate" type="date" value="${esc(selected)}"></label><label class="turn-sort-control"><span>Orden de fechas</span><select class="select" id="turnosSort" aria-label="Ordenar turnos por fecha"><option value="asc" ${sortOrder==='asc'?'selected':''}>Fecha ascendente</option><option value="desc" ${sortOrder==='desc'?'selected':''}>Fecha descendente</option></select></label></div></div><div class="turns-range-summary"><span class="turns-range-icon">${calendarIcon}</span><div><strong>${esc(range.label)}</strong><span>${items.length} turno${items.length===1?'':'s'} en este período · ${sortOrder==='asc'?'fecha ascendente':'fecha descendente'}</span></div></div></section><div class="turns-results">${groups||`<div class="empty turns-empty">No hay turnos para ${period==='day'?'esta fecha':'este período'}</div>`}</div></div>`)
+ const weekdayLabel=groupDate=>new Intl.DateTimeFormat('es-AR',{weekday:'long'}).format(new Date(`${groupDate}T12:00:00`));
+ let groups='';
+ if(period==='week'){
+  const dates=Array.from({length:7},(_,index)=>addDaysISO(range.from,index));
+  if(sortOrder==='desc')dates.reverse();
+  groups=dates.map(groupDate=>{
+   const turns=grouped.get(groupDate)||[],weekday=weekdayLabel(groupDate),kicker=groupDate===todayISO()?`Hoy · ${weekday}`:weekday;
+   return`<section class="turn-day-group is-week-day"><header class="turn-day-head"><div><span class="turn-day-kicker">${esc(kicker)}</span><h3>${fmtDate(groupDate)}</h3></div><span class="turn-day-count">${turns.length} turno${turns.length===1?'':'s'}</span></header>${turns.length?`<div class="week-turn-list">${turns.map(weekTurnItemHtml).join('')}</div>`:`<div class="week-day-empty">${calendarIcon}<strong>Sin turnos</strong></div>`}</section>`
+  }).join('')
+ }else{
+  groups=[...grouped.entries()].map(([groupDate,turns])=>`<section class="turn-day-group"><header class="turn-day-head"><div><span class="turn-day-kicker">${groupDate===todayISO()?'Hoy':weekdayLabel(groupDate)}</span><h3>${fmtDate(groupDate)}</h3></div><span class="turn-day-count">${turns.length} turno${turns.length===1?'':'s'}</span></header><div class="list turn-day-list">${turns.map(turn=>turnItemHtml(turn)).join('')}</div></section>`).join('')
+ }
+ setElementHtml($('#view-turnos'),`<div class="turns-page"><div class="page-header turns-page-header"><div class="page-header-left"><h2>Agenda de turnos</h2><p>Consultá los turnos por día, semana o mes</p></div><button type="button" class="btn btn-primary turns-new-btn" data-action="new-turn">${plusIcon}<span>Agendar turno</span></button></div><section class="turns-filter-card"><div class="turns-filter-row"><div class="turn-period-switch" role="group" aria-label="Período de la agenda">${['day','week','month'].map(value=>`<button type="button" class="turn-period-btn${period===value?' active':''}" data-action="turn-period" data-period="${value}" aria-pressed="${period===value}">${turnPeriodLabel(value)}</button>`).join('')}</div><div class="turn-date-sort-controls"><label class="turn-date-control"><span>Fecha de referencia</span><input class="input" id="turnosDate" type="date" value="${esc(selected)}"></label><label class="turn-sort-control"><span>Orden de fechas</span><select class="select" id="turnosSort" aria-label="Ordenar turnos por fecha"><option value="asc" ${sortOrder==='asc'?'selected':''}>Fecha ascendente</option><option value="desc" ${sortOrder==='desc'?'selected':''}>Fecha descendente</option></select></label></div></div><div class="turns-range-summary"><span class="turns-range-icon">${calendarIcon}</span><div><strong>${esc(range.label)}</strong><span>${items.length} turno${items.length===1?'':'s'} en este período · ${sortOrder==='asc'?'fecha ascendente':'fecha descendente'}</span></div></div></section><div class="turns-results${period==='week'?' is-week-grid':''}">${groups||`<div class="empty turns-empty">No hay turnos para ${period==='day'?'esta fecha':'este período'}</div>`}</div></div>`)
 }
 function openTurnForm(id='',prefill={}){
  const existing=data.turns.find(turn=>turn.id===id)||null;
@@ -5022,7 +5369,8 @@ function renderPagos(){
  const pendingCombos=data.packages.filter(combo=>!getPaymentByCombo(combo.id)).reduce((sum,combo)=>sum+Number(combo.price||0),0);
  const activeCombos=data.packages.filter(combo=>comboComputedStatus(combo)==='Vigente').length;
  const expiring=data.packages.filter(combo=>{const days=daysUntil(combo.endDate);return comboComputedStatus(combo)==='Vigente'&&days>=0&&days<=7}).length;
- const combos=data.packages.slice().sort((a,b)=>String(b.startDate).localeCompare(String(a.startDate)));
+ const comboRank=combo=>['Vigente','Programado'].includes(comboComputedStatus(combo))?0:1;
+ const combos=data.packages.slice().sort((a,b)=>comboRank(a)-comboRank(b)||String(b.startDate).localeCompare(String(a.startDate)));
  const custom=range.period==='custom';
  const fromValue=custom?(ui.paymentFilters.from||''):(range.from||'');
  const toValue=custom?(ui.paymentFilters.to||''):(range.to||'');
@@ -5092,19 +5440,61 @@ function renderComboCard(combo){
  const status=comboComputedStatus(combo);
  const payment=getPaymentByCombo(combo.id);
  const days=daysUntil(combo.endDate);
+ const archived=['Finalizado','Vencido','Completo'].includes(status);
  const displayName=patient?.nombre||combo.patientName||'Sin paciente';
  const initials=String(displayName||'SP').trim().split(/\s+/).slice(0,2).map(part=>part.charAt(0)).join('').toUpperCase()||'SP';
  const expiry=status==='Vigente'&&days>=0&&days<=7?`<span class="badge b-warn">Vence en ${Math.max(0,days)} día${days===1?'':'s'}</span>`:'';
+ const finishedInfo=status==='Finalizado'&&combo.finishedAt?`<span class="combo-meta-chip is-finished">Finalizado ${fmtDate(dateOnly(combo.finishedAt))}</span>`:'';
  const schedule=comboScheduleInfo(combo);
- const scheduleNote=schedule&&usage.remaining>0?`<div class="combo-schedule-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>Próxima sesión sugerida: <strong>${fmtDate(schedule.nextDate)}</strong>${schedule.withinValidity?'':'. Fuera de la vigencia actual.'}</span></div>`:'';
+ const scheduleNote=status==='Vigente'&&schedule&&usage.remaining>0?`<div class="combo-schedule-note"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>Próxima sesión sugerida: <strong>${fmtDate(schedule.nextDate)}</strong>${schedule.withinValidity?'':'. Fuera de la vigencia actual.'}</span></div>`:'';
  const userIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
  const moneyIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M16 8.5c-.9-.8-2.1-1.2-3.5-1.2-1.9 0-3.2.9-3.2 2.3 0 1.5 1.2 2.1 3.4 2.5 2.1.4 3.1 1 3.1 2.5 0 1.5-1.4 2.5-3.4 2.5-1.6 0-3-.5-4-1.5M12 5.5v13"/></svg>';
  const editIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>';
  const deleteIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 15H6L5 6M10 10v7M14 10v7"/></svg>';
- return`<article class="combo-card finance-pack-card"><div class="combo-card-head"><div class="combo-card-identity"><span class="combo-avatar">${esc(initials)}</span><div><div class="combo-card-title">${esc(combo.name||'Pack sin nombre')}</div><div class="combo-card-patient">${esc(displayName)}</div></div></div>${statusBadge(status)}</div><div class="combo-meta">${combo.serviceType?`<span class="combo-meta-chip is-service">${esc(combo.serviceType)}</span>`:''}${combo.frequencyLabel?`<span class="combo-meta-chip">${esc(combo.frequencyLabel)}</span>`:''}<span class="combo-meta-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}</span></span><span class="combo-meta-chip ${payment?.status==='Cobrado'?'is-paid':'is-unpaid'}">${esc(payment?.status||'Sin cobrar')} · ${money(combo.price)}</span>${expiry}</div><div class="combo-usage-head"><span>Ocupación del pack</span><strong>${usage.assigned}/${usage.total}</strong></div><div class="combo-progress"><span style="width:${usage.pct}%"></span></div><div class="combo-counts"><div class="combo-count"><strong>${usage.used}</strong><small>Usadas</small></div><div class="combo-count"><strong>${usage.reserved}</strong><small>Reservadas</small></div><div class="combo-count"><strong>${usage.remaining}</strong><small>Disponibles</small></div></div>${scheduleNote}${combo.notes?`<p class="combo-card-note">${esc(combo.notes)}</p>`:''}<div class="combo-card-actions">${patient?`<button type="button" class="btn combo-profile-btn" data-action="profile" data-id="${esc(patient.id)}">${userIcon}<span>Ficha</span></button>`:''}${!payment?`<button type="button" class="btn combo-pay-btn" data-action="pay-combo" data-id="${esc(combo.id)}">${moneyIcon}<span>Cobrar</span></button>`:''}<button type="button" class="btn combo-edit-btn" data-action="edit-combo" data-id="${esc(combo.id)}">${editIcon}<span>Editar</span></button><button type="button" class="btn combo-delete-btn" data-action="delete-combo" data-id="${esc(combo.id)}">${deleteIcon}<span>Eliminar</span></button></div></article>`
+ const finishIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="9"/></svg>';
+ const reopenIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
+ const stateAction=status==='Finalizado'
+  ?`<button type="button" class="btn combo-reopen-btn" data-action="reopen-combo" data-id="${esc(combo.id)}">${reopenIcon}<span>Reactivar</span></button>`
+  :`<button type="button" class="btn combo-finish-btn" data-action="finish-combo" data-id="${esc(combo.id)}">${finishIcon}<span>Finalizar</span></button>`;
+ return`<details class="combo-card finance-pack-card combo-pack-details${archived?' is-archived':''}"${archived?'':' open'}><summary class="combo-pack-summary"><div class="combo-card-head"><div class="combo-card-identity"><span class="combo-avatar">${esc(initials)}</span><div><div class="combo-card-title">${esc(combo.name||'Pack sin nombre')}</div><div class="combo-card-patient">${esc(displayName)}</div></div></div><div class="combo-pack-summary-side">${statusBadge(status)}<span class="combo-pack-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span></div></div><div class="combo-meta">${combo.serviceType?`<span class="combo-meta-chip is-service">${esc(combo.serviceType)}</span>`:''}${combo.frequencyLabel?`<span class="combo-meta-chip">${esc(combo.frequencyLabel)}</span>`:''}<span class="combo-meta-chip"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg><span>${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}</span></span><span class="combo-meta-chip ${payment?.status==='Cobrado'?'is-paid':'is-unpaid'}">${esc(payment?.status||'Sin cobrar')} · ${money(combo.price)}</span>${expiry}${finishedInfo}</div><div class="combo-pack-collapsed-stats"><span>${usage.assigned}/${usage.total} sesiones asignadas</span><span>${usage.remaining} disponibles</span></div></summary><div class="combo-pack-body"><div class="combo-usage-head"><span>Ocupación del pack</span><strong>${usage.assigned}/${usage.total}</strong></div><div class="combo-progress"><span style="width:${usage.pct}%"></span></div><div class="combo-counts"><div class="combo-count"><strong>${usage.used}</strong><small>Usadas</small></div><div class="combo-count"><strong>${usage.reserved}</strong><small>Reservadas</small></div><div class="combo-count"><strong>${usage.remaining}</strong><small>Disponibles</small></div></div>${scheduleNote}${combo.notes?`<p class="combo-card-note">${esc(combo.notes)}</p>`:''}<div class="combo-card-actions">${patient?`<button type="button" class="btn combo-profile-btn" data-action="profile" data-id="${esc(patient.id)}">${userIcon}<span>Ficha</span></button>`:''}${!payment?`<button type="button" class="btn combo-pay-btn" data-action="pay-combo" data-id="${esc(combo.id)}">${moneyIcon}<span>Cobrar</span></button>`:''}<button type="button" class="btn combo-edit-btn" data-action="edit-combo" data-id="${esc(combo.id)}">${editIcon}<span>Editar</span></button>${stateAction}<button type="button" class="btn combo-delete-btn" data-action="delete-combo" data-id="${esc(combo.id)}">${deleteIcon}<span>Eliminar</span></button></div></div></details>`
 }
-function openComboForm(id='',patientId='',promoId=''){const existing=id?getCombo(id):null,selectedPromo=getPromo(promoId||existing?.promoId||''),startDate=existing?.startDate||todayISO(),base=selectedPromo&&selectedPromo.kind==='package'?{patientId,name:selectedPromo.name,promoId:selectedPromo.id,serviceType:selectedPromo.service,frequencyLabel:selectedPromo.frequency,intervalDays:selectedPromo.intervalDays,sameMonth:selectedPromo.sameMonth,totalSessions:selectedPromo.sessions,price:selectedPromo.price,startDate,endDate:monthEndISO(startDate),notes:'Usable dentro del mismo mes.'}:{patientId,name:'Pack personalizado',totalSessions:4,price:0,startDate,endDate:addDaysISO(startDate,30),notes:''},combo=normalizePackage(existing||base);openModal(existing?'Editar pack':'Nuevo pack',`<form id="comboForm" class="form-grid"><input type="hidden" name="id" value="${esc(existing?.id||'')}"><div class="field full"><label>Paciente *</label><select class="select" name="patientId" required><option value="">Seleccionar</option>${data.patients.map(patient=>`<option value="${patient.id}" ${patient.id===combo.patientId?'selected':''}>${esc(patient.nombre)}</option>`).join('')}</select></div><div class="field full"><label>Promoción predefinida</label><select class="select" name="promoId" id="comboPromoSelect"><option value="">Pack personalizado</option>${packagePromos().map(promo=>`<option value="${promo.id}" ${promo.id===combo.promoId?'selected':''}>${esc(promo.name)} · ${money(promo.price)}</option>`).join('')}</select></div><div class="field full"><label>Nombre del pack *</label><input class="input" name="name" id="comboName" required value="${esc(combo.name)}" placeholder="Ej. Espalda y cuello · Pack mensual"></div><div class="field"><label>Cantidad de sesiones *</label><input class="input" name="totalSessions" id="comboSessions" type="number" min="1" step="1" required value="${combo.totalSessions}"></div><div class="field"><label>Precio total *</label><input class="input" name="price" id="comboPrice" type="number" min="0" step="1" required value="${Number(combo.price||0)||''}" placeholder="Ej. 125000"></div><div class="field"><label>Inicio de vigencia *</label><input class="input" name="startDate" id="comboStartDate" type="date" required value="${combo.startDate}"></div><div class="field"><label>Fin de vigencia *</label><input class="input" name="endDate" id="comboEndDate" type="date" required value="${combo.endDate}"></div><div class="field full"><label>Observaciones</label><textarea class="textarea" name="notes" id="comboNotes" placeholder="Frecuencia, condiciones o aclaraciones">${esc(combo.notes||'')}</textarea></div><div class="field full"><div class="billing-note" id="comboPromoHelp">${combo.frequencyLabel?`${esc(combo.frequencyLabel)}. Usable de ${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}.`:'Los turnos asignados dentro de la vigencia ocuparán sesiones del pack. Los cancelados no consumen cupo.'}</div></div></form>`,`<button class="btn" data-action="close-modal">Cancelar</button><button class="btn btn-primary" data-action="save-combo">Guardar pack</button>`,'wide');const promoSelect=$('#comboPromoSelect'),name=$('#comboName'),sessions=$('#comboSessions'),price=$('#comboPrice'),start=$('#comboStartDate'),end=$('#comboEndDate'),notes=$('#comboNotes'),help=$('#comboPromoHelp');const applyPromo=()=>{const promo=getPromo(promoSelect.value);if(!promo||promo.kind!=='package'){help.textContent='Pack personalizado: definí cantidad, precio y vigencia.';return}name.value=promo.name;sessions.value=promo.sessions;price.value=promo.price;end.value=promo.sameMonth?monthEndISO(start.value):addDaysISO(start.value,30);notes.value='Usable dentro del mismo mes.';help.innerHTML=`<strong>${esc(promo.frequency)}</strong>. Vigencia hasta el último día del mes de inicio: ${fmtDate(end.value)}.`};promoSelect.addEventListener('change',applyPromo);start.addEventListener('change',()=>{const promo=getPromo(promoSelect.value);end.value=promo?.sameMonth?monthEndISO(start.value):addDaysISO(start.value,30);if(promo)help.innerHTML=`<strong>${esc(promo.frequency)}</strong>. Vigencia hasta el último día del mes de inicio: ${fmtDate(end.value)}.`});if(selectedPromo&&!existing)applyPromo()}
-function saveCombo(){const form=$('#comboForm');if(!form.reportValidity())return;const values=Object.fromEntries(new FormData(form)),existing=values.id?getCombo(values.id):null,patient=getPatient(values.patientId),promo=getPromo(values.promoId),totalSessions=Math.max(1,Number(values.totalSessions||1)),sameMonth=promo?.kind==='package'&&promo.sameMonth===true,endDate=sameMonth?monthEndISO(values.startDate):values.endDate;if(!patient)return toast('Seleccioná un paciente','error');if(endDate<values.startDate)return toast('La fecha de finalización debe ser posterior al inicio','error');if(existing&&comboUsage(existing).assigned>totalSessions)return toast('La cantidad no puede ser menor a las sesiones ya asignadas','error');const combo=normalizePackage({...existing,id:existing?.id||uid('combo'),patientId:patient.id,patientName:patient.nombre,name:values.name,promoId:promo?.kind==='package'?promo.id:'',serviceType:promo?.kind==='package'?promo.service:existing?.serviceType||'',frequencyLabel:promo?.kind==='package'?promo.frequency:existing?.frequencyLabel||'',intervalDays:promo?.kind==='package'?promo.intervalDays:existing?.intervalDays||0,sameMonth,totalSessions,price:Number(values.price||0),startDate:values.startDate,endDate,notes:values.notes});upsertEntity('packages',combo);closeModal();renderPagos();toast(existing?'Pack actualizado':'Pack creado')}
+function openComboForm(id='',patientId='',promoId=''){
+ const existing=id?getCombo(id):null;
+ const selectedPromo=getPromo(promoId||existing?.promoId||'');
+ const startDate=existing?.startDate||todayISO();
+ const base=selectedPromo&&selectedPromo.kind==='package'
+  ?{patientId,name:selectedPromo.name,promoId:selectedPromo.id,serviceType:selectedPromo.service,frequencyLabel:selectedPromo.frequency,intervalDays:selectedPromo.intervalDays,sameMonth:selectedPromo.sameMonth,totalSessions:selectedPromo.sessions,price:selectedPromo.price,startDate,endDate:monthEndISO(startDate),status:'Activo',notes:'Usable dentro del período definido.'}
+  :{patientId,name:'Pack personalizado',totalSessions:4,price:0,startDate,endDate:addDaysISO(startDate,30),status:'Activo',notes:''};
+ const combo=normalizePackage(existing||base);
+ const initialDuration=Math.max(1,daysBetweenISO(combo.startDate,combo.endDate));
+ openModal(existing?'Editar pack':'Nuevo pack',`<form id="comboForm" class="form-grid"><input type="hidden" name="id" value="${esc(existing?.id||'')}"><div class="field full"><label>Paciente *</label><select class="select" name="patientId" required><option value="">Seleccionar</option>${data.patients.map(patient=>`<option value="${patient.id}" ${patient.id===combo.patientId?'selected':''}>${esc(patient.nombre)}</option>`).join('')}</select></div><div class="field full"><label>Promoción predefinida</label><select class="select" name="promoId" id="comboPromoSelect"><option value="">Pack personalizado</option>${packagePromos().map(promo=>`<option value="${promo.id}" ${promo.id===combo.promoId?'selected':''}>${esc(promo.name)} · ${money(promo.price)}</option>`).join('')}</select></div><div class="field full"><label>Nombre del pack *</label><input class="input" name="name" id="comboName" required value="${esc(combo.name)}" placeholder="Ej. Espalda y cuello · Pack mensual"></div><div class="field"><label>Cantidad de sesiones *</label><input class="input" name="totalSessions" id="comboSessions" type="number" min="1" step="1" required value="${combo.totalSessions}"></div><div class="field"><label>Precio total *</label><input class="input" name="price" id="comboPrice" type="number" min="0" step="1" required value="${Number(combo.price||0)||''}" placeholder="Ej. 125000"></div><div class="field"><label>Inicio de vigencia *</label><input class="input" name="startDate" id="comboStartDate" type="date" required value="${combo.startDate}"></div><div class="field"><label>Fin de vigencia editable *</label><input class="input" name="endDate" id="comboEndDate" type="date" required value="${combo.endDate}"></div><div class="field"><label>Duración</label><input class="input" id="comboDurationAmount" type="number" min="1" step="1" value="${initialDuration}"></div><div class="field"><label>Unidad de duración</label><select class="select" id="comboDurationUnit"><option value="days" selected>Días</option><option value="weeks">Semanas</option><option value="months">Meses</option></select></div><div class="field full"><label>Estado del pack</label><select class="select" name="status"><option value="Activo" ${combo.status!=='Finalizado'?'selected':''}>En curso</option><option value="Finalizado" ${combo.status==='Finalizado'?'selected':''}>Finalizado y archivado</option></select></div><div class="field full"><label>Observaciones</label><textarea class="textarea" name="notes" id="comboNotes" placeholder="Frecuencia, condiciones o aclaraciones">${esc(combo.notes||'')}</textarea></div><div class="field full"><div class="billing-note" id="comboPromoHelp">${combo.frequencyLabel?`${esc(combo.frequencyLabel)}. Vigencia editable de ${fmtDate(combo.startDate)} a ${fmtDate(combo.endDate)}.`:'Los turnos asignados dentro de la vigencia ocuparán sesiones del pack. Los cancelados no consumen cupo.'}</div></div></form>`,`<button class="btn" data-action="close-modal">Cancelar</button><button class="btn btn-primary" data-action="save-combo">Guardar pack</button>`,'wide');
+ const promoSelect=$('#comboPromoSelect'),name=$('#comboName'),sessions=$('#comboSessions'),price=$('#comboPrice'),start=$('#comboStartDate'),end=$('#comboEndDate'),durationAmount=$('#comboDurationAmount'),durationUnit=$('#comboDurationUnit'),notes=$('#comboNotes'),help=$('#comboPromoHelp');
+ const syncEndFromDuration=()=>{if(!start.value||!durationAmount.value)return;end.value=addDurationISO(start.value,durationAmount.value,durationUnit.value);help.innerHTML=`Vigencia definida manualmente: <strong>${fmtDate(start.value)} a ${fmtDate(end.value)}</strong>.`};
+ const syncDurationFromDates=()=>{if(!start.value||!end.value)return;durationAmount.value=Math.max(1,daysBetweenISO(start.value,end.value));durationUnit.value='days';help.innerHTML=`Vigencia definida manualmente: <strong>${fmtDate(start.value)} a ${fmtDate(end.value)}</strong>.`};
+ const applyPromo=()=>{const promo=getPromo(promoSelect.value);if(!promo||promo.kind!=='package'){help.textContent='Pack personalizado: definí cantidad, precio y vigencia.';return}name.value=promo.name;sessions.value=promo.sessions;price.value=promo.price;end.value=promo.sameMonth?monthEndISO(start.value):addDaysISO(start.value,30);durationAmount.value=Math.max(1,daysBetweenISO(start.value,end.value));durationUnit.value='days';notes.value='Usable dentro del período definido.';help.innerHTML=`<strong>${esc(promo.frequency)}</strong>. La fecha de fin y la duración se pueden modificar.`};
+ promoSelect.addEventListener('change',applyPromo);
+ start.addEventListener('change',syncEndFromDuration);
+ durationAmount.addEventListener('input',syncEndFromDuration);
+ durationUnit.addEventListener('change',syncEndFromDuration);
+ end.addEventListener('change',syncDurationFromDates);
+ if(selectedPromo&&!existing)applyPromo()
+}
+function saveCombo(){
+ const form=$('#comboForm');
+ if(!form.reportValidity())return;
+ const values=Object.fromEntries(new FormData(form)),existing=values.id?getCombo(values.id):null,patient=getPatient(values.patientId),promo=getPromo(values.promoId),totalSessions=Math.max(1,Number(values.totalSessions||1)),endDate=values.endDate;
+ if(!patient)return toast('Seleccioná un paciente','error');
+ if(endDate<values.startDate)return toast('La fecha de finalización debe ser posterior al inicio','error');
+ if(existing&&comboUsage(existing).assigned>totalSessions)return toast('La cantidad no puede ser menor a las sesiones ya asignadas','error');
+ const status=values.status==='Finalizado'?'Finalizado':'Activo';
+ const combo=normalizePackage({...existing,id:existing?.id||uid('combo'),patientId:patient.id,patientName:patient.nombre,name:values.name,promoId:promo?.kind==='package'?promo.id:'',serviceType:promo?.kind==='package'?promo.service:existing?.serviceType||'',frequencyLabel:promo?.kind==='package'?promo.frequency:existing?.frequencyLabel||'',intervalDays:promo?.kind==='package'?promo.intervalDays:existing?.intervalDays||0,sameMonth:false,totalSessions,price:Number(values.price||0),startDate:values.startDate,endDate,status,finishedAt:status==='Finalizado'?(existing?.finishedAt||nowIso()):'',notes:values.notes});
+ upsertEntity('packages',combo);
+ closeModal();
+ renderPagos();
+ toast(status==='Finalizado'?'Pack finalizado y archivado':existing?'Pack actualizado':'Pack creado')
+}
+function finishCombo(id){const combo=getCombo(id);if(!combo||combo.status==='Finalizado')return;openConfirm('Finalizar pack',`El pack “${combo.name}” dejará de figurar como vigente y quedará plegado entre los packs anteriores. Los turnos y pagos vinculados se conservarán.`,async()=>{await upsertEntity('packages',normalizePackage({...combo,status:'Finalizado',finishedAt:nowIso()}));closeConfirm();renderPagos();if(ui.selectedPatientId===combo.patientId&&$('#appModal')?.classList.contains('open'))renderPatientProfile();toast('Pack finalizado y archivado','success')})}
+function reopenCombo(id){const combo=getCombo(id);if(!combo)return;upsertEntity('packages',normalizePackage({...combo,status:'Activo',finishedAt:''}));renderPagos();if(ui.selectedPatientId===combo.patientId&&$('#appModal')?.classList.contains('open'))renderPatientProfile();toast(combo.endDate<todayISO()?'Pack reactivado. Ajustá la vigencia para volver a usarlo':'Pack reactivado','success')}
 function deleteCombo(id){const combo=getCombo(id);if(!combo)return;const usage=comboUsage(combo),payment=getPaymentByCombo(id);if(usage.assigned)return toast('No se puede eliminar: el pack tiene turnos asignados','error');if(payment)return toast('No se puede eliminar: el pack tiene un pago vinculado. Eliminá primero el pago','error');openConfirm('Eliminar pack','Se eliminará la vigencia y la cantidad de sesiones configuradas.',async()=>{await removeEntity('packages',id);closeConfirm();renderPagos();toast('Combo eliminado','info')})}
 function deletePayment(id){const payment=data.payments.find(item=>item.id===id);if(!payment)return;openConfirm('Eliminar pago',`Se eliminará el registro de ${money(payment.amount)} y el turno o combo volverá a figurar como pendiente.`,async()=>{await removeEntity('payments',id);closeConfirm();renderPagos();renderTurnos(payment.date);toast('Pago eliminado','info')})}
 function renderPatientFinance(patientId){const combos=getPatientCombos(patientId),turns=data.turns.filter(turn=>turn.patientId===patientId).sort((a,b)=>`${b.fecha} ${b.hora}`.localeCompare(`${a.fecha} ${a.hora}`)),payments=data.payments.filter(payment=>payment.patientId===patientId),paid=payments.filter(payment=>payment.status==='Cobrado').reduce((sum,payment)=>sum+Number(payment.amount||0),0),pending=turns.filter(turn=>!turn.comboId&&turn.estado!=='Cancelado'&&Number(turn.price)>0&&!getPaymentByTurn(turn.id)).reduce((sum,turn)=>sum+Number(turn.price||0),0),available=combos.filter(combo=>comboComputedStatus(combo)==='Vigente').reduce((sum,combo)=>sum+comboUsage(combo).remaining,0);return`<div class="routine-toolbar"><div><strong>Pagos, turnos y packs</strong><div class="card-sub">Organización financiera completa del paciente</div></div><div class="finance-actions"><button class="btn" data-action="new-combo" data-patient-id="${patientId}">+ Combo</button><button class="btn btn-primary" data-action="new-payment" data-patient-id="${patientId}">+ Pago</button></div></div><div class="kpi-grid" style="margin-bottom:14px">${[['Total cobrado',money(paid)],['Pendiente',money(pending)],['Packs',combos.length],['Sesiones disponibles',available]].map(([label,value])=>`<div class="kpi"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('')}</div><div class="finance-section-head"><div><h3>Packs del paciente</h3></div></div><div class="combo-grid" style="margin-bottom:16px">${combos.map(renderComboCard).join('')||'<div class="empty finance-empty">Sin combos registrados</div>'}</div><div class="finance-section-head"><div><h3>Turnos y estado de cobro</h3></div></div><div class="list">${turns.slice(0,20).map(turn=>{const billing=turnPaymentState(turn);return`<div class="item"><div class="item-main"><strong>${fmtDate(turn.fecha)} · ${esc(turn.hora)} · ${esc(turn.motivo)}</strong><span>${turn.comboId?esc(getCombo(turn.comboId)?.name||'Combo eliminado'):money(turn.price)}</span></div><div class="item-right"><span class="badge ${billing.className}">${esc(billing.label)}</span>${!turn.comboId&&!getPaymentByTurn(turn.id)&&Number(turn.price)>0?`<button class="btn btn-sm btn-success" data-action="pay-turn" data-id="${turn.id}">Cobrar</button>`:''}</div></div>`}).join('')||'<div class="empty">Sin turnos registrados</div>'}</div>`}
@@ -5301,7 +5691,7 @@ async function handleAppClick(e){const target=e.target.closest('[data-action],[d
  else if(a==='routine-tab'){ui.routineTab=target.dataset.tab;renderRutinas()}else if(a==='new-routine'){if(patientId||id)handleCreateRoutineForPatient(patientId||id);else openRoutineEditor('')}else if(a==='edit-routine')openRoutineEditor('',id);else if(a==='view-routine')viewRoutine(id);else if(a==='save-routine')saveRoutine(false);else if(a==='save-routine-draft')saveRoutine(true);else if(a==='duplicate-routine')duplicateRoutine(id);else if(a==='delete-routine')deleteRoutineFlow(id);else if(a==='print-routine')printRoutine(id);else if(a==='print-patient')printPatient(id);
  else if(a==='use-library-exercise'){const ex=combinedExerciseLibrary().find(x=>x.id===id);if(ex)addExerciseToDraft(ex)}else if(a==='add-blank-exercise')addExerciseToDraft({name:'Nuevo ejercicio',category:'General',source:'Manual'});else if(a==='move-exercise'){const i=Number(target.dataset.index),j=i+Number(target.dataset.direction);if(j>=0&&j<ui.routineDraft.exercises.length){[ui.routineDraft.exercises[i],ui.routineDraft.exercises[j]]=[ui.routineDraft.exercises[j],ui.routineDraft.exercises[i]];renderExerciseDraftList();persistRoutineEditorDraft()}}else if(a==='duplicate-draft-exercise'){const i=Number(target.dataset.index);ui.routineDraft.exercises.splice(i+1,0,{...ui.routineDraft.exercises[i],id:uid('exercise')});renderExerciseDraftList();persistRoutineEditorDraft()}else if(a==='remove-draft-exercise'){ui.routineDraft.exercises.splice(Number(target.dataset.index),1);renderExerciseDraftList();persistRoutineEditorDraft()}else if(a==='new-custom-exercise')openCustomExerciseForm();else if(a==='save-custom-exercise')saveCustomExercise();else if(a==='return-routine-editor')renderRoutineEditorModal();else if(a==='delete-custom-exercise')openConfirm('Eliminar ejercicio personalizado','Se quitará de la biblioteca. Las rutinas existentes no se modificarán.',async()=>{await removeEntity('exerciseLibrary',id);closeConfirm();renderRoutineEditorModal()});
  else if(a==='start-routine'){if($('#appModal').classList.contains('open'))closeModal();startSessionByRoutine(id)}else if(a==='start-selected-session'){const selectedRoutineId=$('#sessionRoutine')?.value;if(!selectedRoutineId)return toast('Seleccioná una rutina primero','warn');startSelectedSession()}else if(a==='start-patient-session')handleStartPatientSession(patientId||id);else if(a==='continue-session'){ui.routineTab='execution';setView('rutinas')}else if(a==='go-execution'){if(!(data.activeSessions||[]).length){ui.routineTab='routines';setView('rutinas');toast('Elegí una rutina y tocá Iniciar','info')}else{ui.routineTab='execution';setView('rutinas')}}else if(a==='toggle-pause')togglePause(id);else if(a==='toggle-exercise')toggleExercise(target.dataset.sessionId,target.dataset.exerciseId);else if(a==='finish-session')openConfirm('Finalizar sesión','Se guardará el resultado real en el historial.',async()=>{if(await finalizeSession(id))closeConfirm()},'Finalizar');else if(a==='abandon-session')openConfirm('Marcar como abandonada','La sesión se conservará en el historial con estado abandonado.',async()=>{if(await finalizeSession(id,'Abandonada'))closeConfirm()},'Abandonar');
- else if(a==='turn-period'){const period=target.dataset.period;if(!['day','week','month'].includes(period))return;ui.turnFilters.period=period;renderTurnos()}else if(a==='new-turn')openTurnForm('',patientId?{patientId}:{});else if(a==='set-turn-status')setTurnStatus(id,target.dataset.status);else if(a==='new-turn-promo'){const promo=getPromo(promoId);openTurnForm('',promo?{patientId:patientId||'',rateId:promo.id,motivo:promo.service,price:promo.price}:{})}else if(a==='edit-turn')openTurnForm(id);else if(a==='save-turn')saveTurn();else if(a==='delete-turn')deleteTurn(id);else if(a==='create-patient-from-turn'){const turn=getTurnById(id);if(turn)startAnamnesis('',{nombre:turn.paciente||''})}else if(a==='pay-turn')openPaymentForm({turnId:id});else if(a==='payment-tab'){const tab=target.dataset.tab;if(!['movements','packs'].includes(tab))return;ui.paymentTab=tab;renderPagos()}else if(a==='new-payment')openPaymentForm({patientId:patientId||''});else if(a==='edit-payment')openPaymentForm({paymentId:id});else if(a==='save-payment')savePayment();else if(a==='delete-payment')deletePayment(id);else if(a==='new-combo')openComboForm('',patientId||'');else if(a==='new-combo-promo')openComboForm('',patientId||'',promoId||'');else if(a==='edit-combo')openComboForm(id);else if(a==='save-combo')saveCombo();else if(a==='delete-combo')deleteCombo(id);else if(a==='pay-combo')openPaymentForm({comboId:id});else if(a==='export-csv')exportCsv();else if(a==='save-settings')saveSettings();else if(a==='export-backup-json')exportBackupJson();else if(a==='clear-demo-patients')clearDemoPatients();else if(a==='force-sync'){Object.values(ENTITY_COLLECTIONS).forEach(cfg=>(data[cfg.key]||[]).forEach(item=>item._dirty=true));scheduleCloudWrite(20)}else if(a==='reset-payment-filters'){ui.paymentFilters={period:'all',method:'all',from:'',to:''};renderPagos();toast('Filtros de ingresos restablecidos','info')}else if(a){console.warn('Unhandled action',{action:a,id});toast('Esta acción no está disponible','warn')}
+ else if(a==='turn-period'){const period=target.dataset.period;if(!['day','week','month'].includes(period))return;ui.turnFilters.period=period;renderTurnos()}else if(a==='new-turn')openTurnForm('',patientId?{patientId}:{});else if(a==='set-turn-status')setTurnStatus(id,target.dataset.status);else if(a==='new-turn-promo'){const promo=getPromo(promoId);openTurnForm('',promo?{patientId:patientId||'',rateId:promo.id,motivo:promo.service,price:promo.price}:{})}else if(a==='edit-turn')openTurnForm(id);else if(a==='save-turn')saveTurn();else if(a==='delete-turn')deleteTurn(id);else if(a==='create-patient-from-turn'){const turn=getTurnById(id);if(turn)startAnamnesis('',{nombre:turn.paciente||''})}else if(a==='pay-turn')openPaymentForm({turnId:id});else if(a==='payment-tab'){const tab=target.dataset.tab;if(!['movements','packs'].includes(tab))return;ui.paymentTab=tab;renderPagos()}else if(a==='new-payment')openPaymentForm({patientId:patientId||''});else if(a==='edit-payment')openPaymentForm({paymentId:id});else if(a==='save-payment')savePayment();else if(a==='delete-payment')deletePayment(id);else if(a==='new-combo')openComboForm('',patientId||'');else if(a==='new-combo-promo')openComboForm('',patientId||'',promoId||'');else if(a==='edit-combo')openComboForm(id);else if(a==='save-combo')saveCombo();else if(a==='finish-combo')finishCombo(id);else if(a==='reopen-combo')reopenCombo(id);else if(a==='delete-combo')deleteCombo(id);else if(a==='pay-combo')openPaymentForm({comboId:id});else if(a==='export-csv')exportCsv();else if(a==='save-settings')saveSettings();else if(a==='export-backup-json')exportBackupJson();else if(a==='clear-demo-patients')clearDemoPatients();else if(a==='force-sync'){Object.values(ENTITY_COLLECTIONS).forEach(cfg=>(data[cfg.key]||[]).forEach(item=>item._dirty=true));scheduleCloudWrite(20)}else if(a==='reset-payment-filters'){ui.paymentFilters={period:'all',method:'all',from:'',to:''};renderPagos();toast('Filtros de ingresos restablecidos','info')}else if(a){console.warn('Unhandled action',{action:a,id});toast('Esta acción no está disponible','warn')}
  if(target.closest('details.context'))queueMicrotask(()=>target.closest('details.context')?.removeAttribute('open'))
 }
 function handlePatientDetailsToggle(event){const card=event.target;if(!(card instanceof HTMLDetailsElement))return;if(card.classList.contains('context')){const summary=card.querySelector(':scope > summary');if(summary)summary.setAttribute('aria-expanded',String(card.open));return}if(!card.classList.contains('patient-card'))return;const id=card.dataset.patientCardId;if(!id)return;if(card.open)ui.expandedPatientIds.add(id);else ui.expandedPatientIds.delete(id)}
